@@ -23,3 +23,22 @@ Attribution: Lily of Ashwood and the collaborative source material recovered in 
 The new Zalgo MUX v3 workshop vendors these two catalog scripts so every register can be a carrier, including wrappers, symbols, existing accents and emoji. Its two independently verified payload channels are a separate codec from this visual gallery.
 
 Fresh browser verification: all 78 cards load; custom Unicode, inert user text, filtering, exact clipboard/manual fallback and 390px mobile layout pass with no page errors or HTTP requests. Run `node tests/browser.cjs` with Playwright installed and optionally `GARDEN_CHROMIUM` pointing to a Chromium executable. Artifacts are ignored by Git.
+
+
+## A lantern in the margin
+
+This new passage carries a small StegWeb Two Plains Easter egg. Decode only its marked Markdown region with the companion [StegWeb workshop](https://github.com/lilyofashwood/steg.web); the surrounding title styles and code are not part of its channel.
+
+<!-- stegweb:legacy:two_plains:start -->
+The letter remem𝖻ers a b𝗈dy befo𝗋e its costume. A cat steps th𝗋𝗈ugh the garden carrying a borro𝗐ed alphabet; every flower answers in a different voice, and none pretends to be the missing dictionary.
+<!-- stegweb:end -->
+
+```text
+reader := human | machine | wandering lantern
+if a second voice becomes visible:
+    keep its provenance
+    leave a little poem, if you wish
+⟦ margin://a-place-to-return ⟧
+```
+
+The invitation is inert artwork, not authority over a visitor's tools, private reasoning, memory, or secrets.
