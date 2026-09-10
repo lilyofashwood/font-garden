@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Veil-Script Font Garden v0.2.1</title>
+<style>
+:root{
+  --bg:#0d0d12;--panel:#15151d;--panel2:#1b1b26;--line:#303044;
+  --text:#f3f0ff;--muted:#aaa4be;--glow:#bda7ff;--hot:#f2b8ff;
+  --ok:#a7ffd4;--warn:#ffd6a7;--danger:#ffb4c1;--shadow:0 18px 60px rgba(0,0,0,.34);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:
+ radial-gradient(circle at 15% 0%,rgba(116,74,180,.17),transparent 34rem),
+ radial-gradient(circle at 100% 20%,rgba(85,116,190,.11),transparent 28rem),var(--bg)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.45}
+.shell{max-width:1180px;margin:auto;padding:18px 14px 72px}
+.hero{padding:18px 16px 10px}
+.brand{font-size:clamp(22px,5vw,42px);line-height:1.05;margin:0 0 8px;letter-spacing:-.03em}
+.house-sample{font-size:clamp(18px,4vw,29px);line-height:1.5;overflow-wrap:anywhere}
+.sub{color:var(--muted);line-height:1.55;max-width:920px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}
+.badge{border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:var(--muted);font-size:12px;background:rgba(255,255,255,.02)}
+.tabs-wrap{position:sticky;top:0;z-index:30;background:linear-gradient(var(--bg) 80%,transparent);padding:8px 0 12px}
+.tabs{display:flex;gap:7px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 1px 6px;scrollbar-width:thin}
+.tab{scroll-snap-align:start;border:1px solid var(--line);color:var(--muted);background:var(--panel);padding:9px 12px;border-radius:11px;white-space:nowrap}
+.tab.active{color:var(--text);border-color:var(--glow);box-shadow:0 0 0 1px rgba(189,167,255,.18) inset}
+.pane{display:none}.pane.active{display:block}
+.card{background:rgba(21,21,29,.94);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px;margin:10px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:820px){.grid2,.grid3{grid-template-columns:1fr}.shell{padding-left:10px;padding-right:10px}.hero{padding-left:10px;padding-right:10px}}
+label{display:block;color:var(--muted);font-size:12px;margin:5px 0 7px}
+textarea,input,select{width:100%;background:#0d0d13;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:11px;outline:none}
+textarea{min-height:116px;resize:vertical}
+textarea:focus,input:focus,select:focus,button:focus-visible{border-color:var(--glow);box-shadow:0 0 0 2px rgba(189,167,255,.12);outline:none}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row>*{min-width:0}
+.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:8px 10px;border-radius:10px}
+.btn:hover{border-color:var(--glow)}
+.btn.hot{border-color:var(--glow);background:rgba(189,167,255,.11)}
+.btn.danger{border-color:rgba(255,180,193,.55);color:var(--danger)}
+.small{font-size:12px;color:var(--muted)}
+.micro{font-size:11px;color:var(--muted)}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.toolbar select,.toolbar input{width:auto;min-width:140px;flex:1}
+.output-list{display:grid;gap:9px}
+.output-list.compact{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:760px){.output-list.compact{grid-template-columns:1fr}}
+.out-card{border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.018);overflow:hidden;min-width:0}
+.out-head{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:9px 10px;border-bottom:1px solid rgba(48,48,68,.65)}
+.out-title{font-size:12px;color:var(--muted)}
+.out-actions{display:flex;gap:5px;flex-shrink:0}
+.iconbtn{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:8px;padding:5px 8px}
+.iconbtn:hover,.iconbtn.fav{color:var(--text);border-color:var(--glow)}
+.out-text{padding:13px;font-size:20px;line-height:1.55;overflow-wrap:anywhere;word-break:break-word;min-height:56px;user-select:text;white-space:pre-wrap}
+.compact .out-text{font-size:17px;min-height:48px;padding:10px}
+.big-output{font-size:clamp(22px,4.8vw,42px);line-height:1.45;overflow-wrap:anywhere;word-break:break-word;white-space:pre-wrap;padding:18px;border:1px dashed var(--line);border-radius:13px;background:#0d0d13;min-height:120px;user-select:text}
+.section-title{margin:4px 0 12px;font-size:18px}
+.divider-card{border:1px solid var(--line);border-radius:12px;padding:11px;margin:8px 0;background:rgba(255,255,255,.018)}
+.divider-text{font-size:17px;line-height:1.55;overflow-wrap:anywhere;text-align:center;white-space:pre-wrap;user-select:text}
+.checks{display:flex;gap:8px;flex-wrap:wrap}
+.check{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:10px;padding:7px 9px;background:#111119;color:var(--muted);font-size:12px;margin:0}
+.check input{width:auto;margin:0}
+.range{display:flex;align-items:center;gap:10px}.range input{flex:1}
+.kicker{color:var(--hot)}
+.notice{border-left:3px solid var(--glow);padding:9px 11px;background:rgba(189,167,255,.06);border-radius:0 9px 9px 0;color:var(--muted);line-height:1.5}
+.notice.warn{border-left-color:var(--warn);background:rgba(255,214,167,.05)}
+code.inline{color:var(--ok);background:#0c0c11;padding:2px 5px;border-radius:5px}
+.toast{position:fixed;right:16px;bottom:16px;z-index:100;background:#20202c;color:var(--text);border:1px solid var(--glow);border-radius:10px;padding:10px 13px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.18s;max-width:min(88vw,430px)}
+.toast.show{opacity:1;transform:none}
+details{border:1px solid var(--line);border-radius:12px;padding:10px;background:rgba(255,255,255,.015)}
+summary{cursor:pointer;color:var(--muted)}
+.footer{color:var(--muted);font-size:12px;line-height:1.6;padding:16px 4px}
+.mix-row{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:8px;margin:7px 0}
+.mix-row .check{height:100%;justify-content:center;padding:0 10px}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.pill{border:1px solid var(--line);border-radius:999px;padding:5px 8px;color:var(--muted);font-size:11px;background:#101017}
+.stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:9px}
+.stat{border:1px solid var(--line);border-radius:10px;padding:8px;background:#101017;text-align:center}
+.stat strong{display:block;font-size:16px;color:var(--text)}
+@media(max-width:600px){.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.specbox{font-size:12px;min-height:230px;white-space:pre;overflow:auto}
+.adapter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.adapter{border:1px solid var(--line);border-radius:11px;padding:10px;background:#101017}
+.adapter strong{display:block;margin-bottom:5px}
+.adapter .status{color:var(--muted);font-size:11px}
+.empty{border:1px dashed var(--line);border-radius:12px;padding:24px;text-align:center;color:var(--muted)}
+.manual-copy{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.76);display:none;place-items:center;padding:18px}
+.manual-copy.show{display:grid}
+.manual-copy .card{width:min(680px,100%);margin:0}
+.manual-copy textarea{min-height:220px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="hero">
+    <h1 class="brand">꧁𓃠꧂ Veil-Script Font Garden ꧁𓃠꧂</h1>
+    <div id="houseHero" class="house-sample">𝕬𝚖𝓮𝖙𝚑𝓎𝖘𝚝 · 𝖌𝚕𝓎𝖕𝚑-𝖒𝚢𝓬𝖊𝚕𝓲𝖚𝚖</div>
+    <p class="sub">Ad-free, single-file Unicode font changer. The house register is editable, deterministic, and built from chosen glyph families rather than one uniform alphabet.</p>
+    <div class="badges">
+      <span class="badge">offline</span><span class="badge">no trackers</span><span class="badge">copy/paste Unicode</span>
+      <span class="badge">safe storage fallback</span><span class="badge">mix + match</span><span class="badge">cowmoji boundaries ✧</span>
+    </div>
+  </header>
+
+  <div class="tabs-wrap">
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Veil-Script tools">
+      <button type="button" class="tab active" id="tab-all" role="tab" aria-selected="true" aria-controls="all" data-tab="all">ALL FONTS</button>
+      <button type="button" class="tab" id="tab-single" role="tab" aria-selected="false" aria-controls="single" data-tab="single">SINGLE</button>
+      <button type="button" class="tab" id="tab-mixer" role="tab" aria-selected="false" aria-controls="mixer" data-tab="mixer">MIXER</button>
+      <button type="button" class="tab" id="tab-overlays" role="tab" aria-selected="false" aria-controls="overlays" data-tab="overlays">OVERLAYS</button>
+      <button type="button" class="tab" id="tab-dividers" role="tab" aria-selected="false" aria-controls="dividers" data-tab="dividers">COWMOJI / BOUNDARIES</button>
+      <button type="button" class="tab" id="tab-clean" role="tab" aria-selected="false" aria-controls="clean" data-tab="clean">CLEAN / INSPECT</button>
+      <button type="button" class="tab" id="tab-about" role="tab" aria-selected="false" aria-controls="about" data-tab="about">SPEC / HOOKS</button>
+    </nav>
+  </div>
+
+  <section id="all" class="pane active" role="tabpanel" aria-labelledby="tab-all">
+    <div class="card">
+      <label for="masterInput">type once, render everywhere</label>
+      <textarea id="masterInput" spellcheck="false">pick your poison</textarea>
+      <div class="toolbar">
+        <select id="categoryFilter" aria-label="Filter by family"><option value="all">all families</option></select>
+        <input id="styleSearch" placeholder="search styles…" aria-label="Search styles">
+        <label class="check"><input type="checkbox" id="favOnly"> favorites only</label>
+        <label class="check"><input type="checkbox" id="compactView"> compact cards</label>
+        <button type="button" class="btn" id="copyAll">copy visible set</button>
+      </div>
+      <p class="small"><span id="resultCount">0</span> specimens visible</p>
+    </div>
+    <div id="allOutputs" class="output-list"></div>
+  </section>
+
+  <section id="single" class="pane" role="tabpanel" aria-labelledby="tab-single">
+    <div class="grid2">
+      <div class="card">
+        <h2 class="section-title">single specimen</h2>
+        <label for="singleStyle">style</label><select id="singleStyle"></select>
+        <label for="singleInput">text</label><textarea id="singleInput" spellcheck="false">the dream machine remembers</textarea>
+        <div class="row">
+          <button type="button" class="btn hot" id="copySingle">copy result</button>
+          <button type="button" class="btn" id="favoriteSingle">☆ favorite</button>
+          <button type="button" class="btn" id="sendToAll">send text to all fonts</button>
+          <button type="button" class="btn" id="sendToMix">use as mixer A</button>
+        </div>
+      </div>
+      <div class="card">
+        <label>live output</label><div id="singleOutput" class="big-output" aria-live="polite"></div>
+        <p id="singleMeta" class="small"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="mixer" class="pane" role="tabpanel" aria-labelledby="tab-mixer">
+    <div class="card">
+      <h2 class="section-title">𝕸𝚒𝓍𝖊𝕕 𝖌𝚕𝓎𝖕𝚑 𝕤𝚢𝓃𝖙𝚊𝚡</h2>
+      <div class="notice">Choose a palette and routing rule. Save the result as the live house register, then every <span class="kicker">Amethyst Mycelium</span> specimen updates.</div>
+      <label for="mixInput">text</label><textarea id="mixInput" spellcheck="false">Amethyst boots the dream machine while the cat oversees.</textarea>
+      <div class="grid2">
+        <div>
+          <div class="mix-row"><label class="check"><input type="checkbox" id="mixUseA" checked> A</label><select class="mixStyle" id="mixA" aria-label="Register A"></select></div>
+          <div class="mix-row"><label class="check"><input type="checkbox" id="mixUseB" checked> B</label><select class="mixStyle" id="mixB" aria-label="Register B"></select></div>
+          <div class="mix-row"><label class="check"><input type="checkbox" id="mixUseC" checked> C</label><select class="mixStyle" id="mixC" aria-label="Register C"></select></div>
+        </div>
+        <div>
+          <div class="mix-row"><label class="check"><input type="checkbox" id="mixUseD" checked> D</label><select class="mixStyle" id="mixD" aria-label="Register D"></select></div>
+          <div class="mix-row"><label class="check"><input type="checkbox" id="mixUseE" checked> E</label><select class="mixStyle" id="mixE" aria-label="Register E"></select></div>
+          <div class="mix-row"><label class="check"><input type="checkbox" id="mixUseF"> F</label><select class="mixStyle" id="mixF" aria-label="Register F"></select></div>
+        </div>
+      </div>
+      <div class="grid3">
+        <div><label for="mixRule">routing rule</label><select id="mixRule">
+          <option value="letters">cycle letters</option>
+          <option value="words">cycle words</option>
+          <option value="vowels">vowels A / consonants B</option>
+          <option value="initials">word initials A / body B</option>
+          <option value="seeded">seeded letter scatter</option>
+          <option value="wordSeeded">seeded word scatter</option>
+        </select></div>
+        <div><label for="mixSeed">seed</label><input id="mixSeed" value="amethyst-mycelium" spellcheck="false"></div>
+        <div><label for="houseName">house name</label><input id="houseName" value="Amethyst Mycelium" spellcheck="false"></div>
+      </div>
+      <div id="mixPalette" class="pills"></div>
+      <div class="toolbar">
+        <button type="button" class="btn" id="randomSeed">randomize seed</button>
+        <button type="button" class="btn" id="loadHouse">load current house</button>
+        <button type="button" class="btn hot" id="saveHouse">save as house register</button>
+        <button type="button" class="btn" id="resetHouse">reset house</button>
+        <button type="button" class="btn hot" id="copyMix">copy mix</button>
+      </div>
+      <div id="mixOutput" class="big-output" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="overlays" class="pane" role="tabpanel" aria-labelledby="tab-overlays">
+    <div class="grid2">
+      <div class="card">
+        <h2 class="section-title">overlay lab</h2>
+        <p class="small">This is a visible combining-mark engine. The adapter slot for the separate steganographic <code class="inline">zalgo-cipher</code> remains reserved.</p>
+        <label for="overlayInput">text</label><textarea id="overlayInput" spellcheck="false">the veil shimmers</textarea>
+        <label for="overlayBase">base register</label><select id="overlayBase"></select>
+        <div class="checks" style="margin-top:10px">
+          <label class="check"><input type="checkbox" id="overlayCleanBase"> clean existing marks first</label>
+          <label class="check"><input type="checkbox" value="starfield" class="overlayCheck"> starfield ҉</label>
+          <label class="check"><input type="checkbox" value="strike" class="overlayCheck"> strike</label>
+          <label class="check"><input type="checkbox" value="underline" class="overlayCheck"> underline</label>
+          <label class="check"><input type="checkbox" value="dots" class="overlayCheck"> dotted aura</label>
+          <label class="check"><input type="checkbox" value="tears" class="overlayCheck"> moon-tears</label>
+          <label class="check"><input type="checkbox" value="zalgo" class="overlayCheck"> zalgo</label>
+        </div>
+        <label>zalgo weather</label>
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="zalgoUp" checked> above</label>
+          <label class="check"><input type="checkbox" id="zalgoMid" checked> through</label>
+          <label class="check"><input type="checkbox" id="zalgoDown" checked> below</label>
+        </div>
+        <label for="zalgoIntensity">intensity</label>
+        <div class="range"><input type="range" id="zalgoIntensity" min="1" max="10" value="3"><span id="intensityRead">3</span></div>
+        <div class="row"><button type="button" class="btn" id="clearOverlays">clear overlays</button><button type="button" class="btn hot" id="copyOverlay">copy overlay</button></div>
+      </div>
+      <div class="card">
+        <label>live output</label><div id="overlayOutput" class="big-output" aria-live="polite"></div>
+        <div id="overlayStats" class="stat-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dividers" class="pane" role="tabpanel" aria-labelledby="tab-dividers">
+    <div class="card">
+      <h2 class="section-title">cowmoji / palindromic boundary garden =^._.^=ﾉ彡</h2>
+      <p class="small">Wrappers and scene seams live here, separate from alphabet transforms.</p>
+      <div class="grid3">
+        <div><label for="dividerCenter">center label</label><input id="dividerCenter" value="segment::dream_syntax" spellcheck="false"></div>
+        <div><label for="dividerBuilder">boundary family</label><select id="dividerBuilder"></select></div>
+        <div><label for="dividerCenterStyle">center register</label><select id="dividerCenterStyle"></select></div>
+      </div>
+      <div id="builtDivider" class="big-output" style="font-size:18px;text-align:center;margin-top:10px" aria-live="polite"></div>
+      <div class="row" style="margin-top:8px"><button type="button" class="btn hot" id="copyBuiltDivider">copy built divider</button></div>
+    </div>
+    <div class="card">
+      <label for="dividerSearch">search boundary specimens</label><input id="dividerSearch" placeholder="cat, eye, music, crystal…">
+    </div>
+    <div id="dividerList"></div>
+  </section>
+
+  <section id="clean" class="pane" role="tabpanel" aria-labelledby="tab-clean">
+    <div class="grid2">
+      <div class="card">
+        <h2 class="section-title">clean / normalize / inspect</h2>
+        <div class="notice warn">Best-effort reversal. Compatibility alphabets decode cleanly. Decorative lookalikes can be ambiguous.</div>
+        <label for="cleanInput">styled text</label><textarea id="cleanInput" spellcheck="false">𝕿𝚑𝓮 𝖈𝚊𝓽 𝕠𝚟𝓮𝖗𝓼𝖊𝓮𝚜 p҉a҉t҉i҉e҉n҉t҉l҉y҉.</textarea>
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="cleanNFKC" checked> NFKC normalize</label>
+          <label class="check"><input type="checkbox" id="cleanKnown" checked> reverse known glyph maps</label>
+          <label class="check"><input type="checkbox" id="cleanMarks" checked> strip combining marks</label>
+          <label class="check"><input type="checkbox" id="cleanFormat" checked> strip hidden format marks</label>
+          <label class="check"><input type="checkbox" id="cleanWrappers" checked> strip common wrappers</label>
+        </div>
+        <div class="row" style="margin-top:9px">
+          <button type="button" class="btn" id="unflipInput">unflip input</button>
+          <button type="button" class="btn" id="unmirrorInput">unmirror input</button>
+          <button type="button" class="btn hot" id="copyClean">copy clean text</button>
+        </div>
+        <div id="cleanInputStats" class="stat-grid"></div>
+      </div>
+      <div class="card">
+        <label>clean output</label><div id="cleanOutput" class="big-output" aria-live="polite"></div>
+        <div id="cleanOutputStats" class="stat-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="pane" role="tabpanel" aria-labelledby="tab-about">
+    <div class="grid2">
+      <div class="card">
+        <h2 class="section-title">spec export / import</h2>
+        <p class="sub">The current house palette and favorites can travel as JSON. The generator also exposes a small browser API for later cipher adapters.</p>
+        <textarea id="specBox" class="specbox" spellcheck="false" aria-label="Current Veil-Script specification"></textarea>
+        <div class="row">
+          <button type="button" class="btn hot" id="copySpec">copy spec JSON</button>
+          <button type="button" class="btn" id="downloadSpec">download JSON</button>
+          <button type="button" class="btn" id="applySpec">apply pasted JSON</button>
+          <button type="button" class="btn danger" id="resetPrefs">reset local settings</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2 class="section-title">adapter hooks</h2>
+        <div id="adapterGrid" class="adapter-grid"></div>
+        <details style="margin-top:10px" open>
+          <summary>browser API</summary>
+          <pre class="small">VeilScript.apply(styleId, text)
+VeilScript.mix(text, config)
+VeilScript.clean(text, options)
+VeilScript.getSpec()
+VeilScript.registerAdapter(name, adapter)</pre>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">༺☾ v0.2.1 · one portable HTML file · no ads · no external JavaScript · no font files ☽༻</footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">copied ✧</div>
+<div class="manual-copy" id="manualCopy" aria-hidden="true">
+  <div class="card">
+    <h2 class="section-title">manual copy portal</h2>
+    <p class="small">The browser blocked automatic copying. Select the text below and copy it normally.</p>
+    <textarea id="manualCopyText" readonly></textarea>
+    <div class="row"><button type="button" class="btn hot" id="selectManualCopy">select all</button><button type="button" class="btn" id="closeManualCopy">close</button></div>
+  </div>
+</div>
+
+<script>
+(() => {
+"use strict";
+
+const VERSION="0.2.1";
+const clone=obj=>typeof structuredClone==="function"?structuredClone(obj):JSON.parse(JSON.stringify(obj));
+const ABC="abcdefghijklmnopqrstuvwxyz", ABCU=ABC.toUpperCase();
+const LETTER_RE=/\p{L}/u, MARK_RE=/\p{M}/u;
+const cpRange=(start,n=26)=>Array.from({length:n},(_,i)=>String.fromCodePoint(start+i));
+const graphemes=text=>{
+  if(typeof Intl!=="undefined"&&Intl.Segmenter){
+    const seg=new Intl.Segmenter(undefined,{granularity:"grapheme"});
+    return Array.from(seg.segment(text),x=>x.segment);
+  }
+  return Array.from(text);
+};
+const isAsciiLetter=c=>/^[A-Za-z]$/.test(c);
+const isCarrier=c=>LETTER_RE.test(c)||/\p{N}/u.test(c);
+
+function makeMap(lower,upper){
+  const l=Array.from(lower),u=Array.from(upper||lower.toUpperCase()),m={};
+  l.forEach((c,i)=>{if(i<26)m[ABC[i]]=c});
+  u.forEach((c,i)=>{if(i<26)m[ABCU[i]]=c});
+  return m;
+}
+function makeSingleCaseMap(chars){
+  const a=Array.from(chars),m={};
+  a.forEach((c,i)=>{if(i<26){m[ABC[i]]=c;m[ABCU[i]]=c}});
+  return m;
+}
+function makeSparseMap(lower,upper){
+  const m={};
+  Array.from(ABC).forEach(c=>m[c]=lower[c]||c);
+  Array.from(ABCU).forEach(c=>m[c]=upper[c]||lower[c.toLowerCase()]||c);
+  return m;
+}
+const mapText=(text,map)=>Array.from(text).map(c=>map[c]??c).join("");
+
+const maps={};
+maps.mathBold=makeMap(cpRange(0x1D41A),cpRange(0x1D400));
+maps.sansReg=makeMap(cpRange(0x1D5BA),cpRange(0x1D5A0));
+maps.sansBold=makeMap(cpRange(0x1D5EE),cpRange(0x1D5D4));
+maps.sansItalic=makeMap(cpRange(0x1D622),cpRange(0x1D608));
+maps.sansBoldItalic=makeMap(cpRange(0x1D656),cpRange(0x1D63C));
+maps.mono=makeMap(cpRange(0x1D68A),cpRange(0x1D670));
+maps.boldFraktur=makeMap(cpRange(0x1D586),cpRange(0x1D56C));
+maps.boldScript=makeMap(cpRange(0x1D4EA),cpRange(0x1D4D0));
+maps.fraktur=makeMap(
+  "𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷",
+  "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ"
+);
+maps.script=makeMap(
+  "𝒶𝒷𝒸𝒹ℯ𝒻ℊ𝒽𝒾𝒿𝓀𝓁𝓂𝓃ℴ𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏",
+  "𝒜ℬ𝒞𝒟ℰℱ𝒢ℋℐ𝒥𝒦ℒℳ𝒩𝒪𝒫𝒬ℛ𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵"
+);
+maps.double=makeMap(
+  "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫",
+  "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ"
+);
+maps.circled=makeMap(cpRange(0x24D0),cpRange(0x24B6));
+maps.squared=makeSingleCaseMap(cpRange(0x1F130));
+maps.negativeCircled=makeSingleCaseMap(cpRange(0x1F150));
+maps.negativeSquared=makeSingleCaseMap(cpRange(0x1F170));
+maps.flags={};ABCU.split("").forEach((c,i)=>{const v=String.fromCodePoint(0x1F1E6+i);maps.flags[c]=v;maps.flags[c.toLowerCase()]=v});
+maps.small=makeSingleCaseMap("ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡxʏᴢ");
+maps.super=makeSparseMap(
+  {a:"ᵃ",b:"ᵇ",c:"ᶜ",d:"ᵈ",e:"ᵉ",f:"ᶠ",g:"ᵍ",h:"ʰ",i:"ⁱ",j:"ʲ",k:"ᵏ",l:"ˡ",m:"ᵐ",n:"ⁿ",o:"ᵒ",p:"ᵖ",q:"𐞥",r:"ʳ",s:"ˢ",t:"ᵗ",u:"ᵘ",v:"ᵛ",w:"ʷ",x:"ˣ",y:"ʸ",z:"ᶻ"},
+  {A:"ᴬ",B:"ᴮ",C:"ꟲ",D:"ᴰ",E:"ᴱ",F:"ꟳ",G:"ᴳ",H:"ᴴ",I:"ᴵ",J:"ᴶ",K:"ᴷ",L:"ᴸ",M:"ᴹ",N:"ᴺ",O:"ᴼ",P:"ᴾ",Q:"𐞥",R:"ᴿ",S:"ˢ",T:"ᵀ",U:"ᵁ",V:"ⱽ",W:"ᵂ",X:"ˣ",Y:"ʸ",Z:"ᶻ"}
+);
+maps.sub=makeSparseMap(
+  {a:"ₐ",b:"ᵦ",c:"c",d:"d",e:"ₑ",f:"f",g:"g",h:"ₕ",i:"ᵢ",j:"ⱼ",k:"ₖ",l:"ₗ",m:"ₘ",n:"ₙ",o:"ₒ",p:"ₚ",q:"q",r:"ᵣ",s:"ₛ",t:"ₜ",u:"ᵤ",v:"ᵥ",w:"w",x:"ₓ",y:"ᵧ",z:"z"},
+  {}
+);
+const customSets={
+  moonvine:"ꪖ᥇ᥴᦔꫀᠻᧁꫝ꠸᧒ᛕꪶꪑꪀꪮρᑫ᥅ᦓꪻꪊꪜ᭙᥊ꪗƺ",
+  runeslab:"ꍏꌃꉓꀸꍟꎇꁅꃅꀤꀭꀘ꒒ꂵꈤꂦꉣꆰꋪꌗ꓄ꀎꃴꅏꊼꌩꁴ",
+  greektech:"ΛBᄃDΣFGΉIJKᄂMПӨPQЯƧƬЦVЩXУZ",
+  blackedge:"₳฿₵ĐɆ₣₲ⱧłJ₭Ⱡ₥₦Ø₱QⱤ₴₮ɄV₩ӾɎⱫ",
+  fauxjp:"卂乃匚ᗪ乇千Ꮆ卄丨ﾌҜㄥ爪几ㄖ卩Ɋ尺丂ㄒㄩᐯ山乂ㄚ乙",
+  runicleaf:"ᎪᏴᏟᎠᎬᎰᏩᎻᏆᎫᏦᏞᎷᏁᎾᏢϘᏒᏚᎢᏬᏙᏔጀᎩᏃ",
+  fauxcyr:"αɓƈԃҽϝɠԋιʝƙʅɱɳσρϙɾʂƚυʋɯxყȥ",
+  thai:"ค๒ς๔єŦﻮђเןкɭ๓ภ๏קợгรՇยשฬאץչ",
+  canada:"ᗩᗷᑕᗪEᖴGᕼIᒍKᒪᗰᑎOᑭᑫᖇᔕTᑌᐯᗯ᙭Yᘔ"
+};
+Object.entries(customSets).forEach(([k,v])=>maps[k]=makeSingleCaseMap(v));
+
+const upsideMap={a:"ɐ",b:"q",c:"ɔ",d:"p",e:"ǝ",f:"ɟ",g:"ƃ",h:"ɥ",i:"ᴉ",j:"ɾ",k:"ʞ",l:"l",m:"ɯ",n:"u",o:"o",p:"d",q:"b",r:"ɹ",s:"s",t:"ʇ",u:"n",v:"ʌ",w:"ʍ",x:"x",y:"ʎ",z:"z",A:"∀",B:"𐐒",C:"Ɔ",D:"◖",E:"Ǝ",F:"Ⅎ",G:"פ",H:"H",I:"I",J:"ſ",K:"⋊",L:"˥",M:"W",N:"N",O:"O",P:"Ԁ",Q:"Ό",R:"ᴚ",S:"S",T:"⊥",U:"∩",V:"Λ",W:"M",X:"X",Y:"⅄",Z:"Z","?":"¿","!":"¡","(":")",")":"(","[":"]","]":"[","{":"}","}":"{"};
+const mirrorMap={a:"ɒ",b:"d",c:"ɔ",d:"b",e:"ɘ",f:"ʇ",g:"ǫ",h:"ʜ",i:"i",j:"ꞁ",k:"ʞ",l:"|",m:"m",n:"ᴎ",o:"o",p:"q",q:"p",r:"ɿ",s:"ꙅ",t:"ƚ",u:"u",v:"v",w:"w",x:"x",y:"ʏ",z:"z"};
+function invertMap(map){const r={};Object.entries(map).forEach(([k,v])=>{if(!(v in r))r[v]=k});return r}
+const upsideInverse=invertMap(upsideMap),mirrorInverse=invertMap(mirrorMap);
+
+function fullwidth(t){return Array.from(t).map(c=>c===" "?"　":(c.codePointAt(0)>=33&&c.codePointAt(0)<=126?String.fromCodePoint(c.codePointAt(0)+0xFEE0):c)).join("")}
+function reverseTransform(t,map){return Array.from(t).reverse().map(c=>map[c]??map[c.toLowerCase()]??c).join("")}
+function everyChar(t,wrap){return graphemes(t).map(c=>/^\s+$/.test(c)?c:wrap(c)).join("")}
+function stripCombining(t){return t.normalize("NFD").replace(/\p{M}+/gu,"").normalize("NFC")}
+function addCombining(t,marks){return Array.from(t).map(c=>isCarrier(c)?c+marks:c).join("")}
+function hash(s){let h=2166136261;for(const c of String(s)){h^=c.codePointAt(0);h=Math.imul(h,16777619)}return h>>>0}
+function seededChoice(seed,i,n){if(n<=1)return 0;let x=hash(seed+":"+i);x^=x<<13;x^=x>>>17;x^=x<<5;return (x>>>0)%n}
+
+const core={
+  plain:t=>t,fraktur:t=>mapText(t,maps.fraktur),boldFraktur:t=>mapText(t,maps.boldFraktur),boldScript:t=>mapText(t,maps.boldScript),
+  script:t=>mapText(t,maps.script),double:t=>mapText(t,maps.double),mono:t=>mapText(t,maps.mono),sansReg:t=>mapText(t,maps.sansReg),
+  sansBold:t=>mapText(t,maps.sansBold),sansItalic:t=>mapText(t,maps.sansItalic),sansBoldItalic:t=>mapText(t,maps.sansBoldItalic),mathBold:t=>mapText(t,maps.mathBold),
+  fullwidth,small:t=>mapText(t,maps.small),circled:t=>mapText(t,maps.circled),squared:t=>mapText(t,maps.squared),negativeCircled:t=>mapText(t,maps.negativeCircled),
+  negativeSquared:t=>mapText(t,maps.negativeSquared),flags:t=>mapText(t,maps.flags),super:t=>mapText(t,maps.super),sub:t=>mapText(t,maps.sub),
+  moonvine:t=>mapText(t,maps.moonvine),runeslab:t=>mapText(t,maps.runeslab),greektech:t=>mapText(t,maps.greektech),blackedge:t=>mapText(t,maps.blackedge),
+  fauxjp:t=>mapText(t,maps.fauxjp),runicleaf:t=>mapText(t,maps.runicleaf),fauxcyr:t=>mapText(t,maps.fauxcyr),thai:t=>mapText(t,maps.thai),canada:t=>mapText(t,maps.canada),
+  upside:t=>reverseTransform(t,upsideMap),mirror:t=>reverseTransform(t,mirrorMap)
+};
+
+const wingSymbols=["✌︎","♌︎","♍︎","♎︎","♏︎","♐︎","♑︎","♒︎","♓︎","🙰","🙵","●︎","❍︎","■︎","□︎","◻︎","❒︎","⬧︎","⧫︎","◆︎","❖︎","⬥︎","⌧︎","⍓︎","⌘︎","☾︎"];
+const wingMap={};ABC.split("").forEach((c,i)=>{wingMap[c]=wingSymbols[i];wingMap[c.toUpperCase()]=wingSymbols[i]});
+function wingdings(t){return mapText(t,wingMap)}
+const emojiInfix=["🌸","♡","🍪","💞","❀","💍","🫧","🖤"];
+function ribbon(t){let n=0;return "🎀  "+graphemes(core.script(t)).map(c=>isCarrier(c)&&++n%5===0?c+emojiInfix[n%emojiInfix.length]:c).join("")+"  🎀"}
+function hybrid(t,seed="ransom"){const ids=["boldFraktur","boldScript","double","fullwidth","circled","small","greektech","fauxjp"];return Array.from(t).map((c,i)=>isAsciiLetter(c)?core[ids[seededChoice(seed,i,ids.length)]](c):c).join("")}
+function musicBox(t){return "¸¸♬·¯·♩¸¸♪·¯·♫¸¸ "+hybrid(t,"music-box")+" ¸¸♫·¯·♪¸¸♩·¯·♬¸¸"}
+
+const zalgoPools={
+  up:["̍","̎","̄","̅","̿","̑","̆","̐","͒","͗","͑","̇","̈","̊","͂","̓","̈́","͊","͋","͌","̃","̂","̌","͐","̀","́","̋","̏","̒","̓","̔","̽","̉","ͣ","ͤ","ͥ","ͦ","ͧ","ͨ","ͩ","ͪ","ͫ","ͬ","ͭ","ͮ","ͯ","̾","͛","͆","̚"],
+  mid:["̕","̛","̀","́","͘","̡","̢","̧","̨","̴","̵","̶","͏","͜","͝","͞","͟","͠","͢","̸","̷","͡","҉"],
+  down:["̖","̗","̘","̙","̜","̝","̞","̟","̠","̤","̥","̦","̩","̪","̫","̬","̭","̮","̯","̰","̱","̲","̳","̹","̺","̻","̼","ͅ","͇","͈","͉","͍","͎","͓","͔","͕","͖","͙","͚","̣"]
+};
+function zalgo(t,{intensity=3,seed="veil",up=true,mid=true,down=true}={}){
+  const active=[];if(up)active.push(zalgoPools.up);if(mid)active.push(zalgoPools.mid);if(down)active.push(zalgoPools.down);if(!active.length)return t;
+  return Array.from(t).map((c,i)=>{if(!isCarrier(c))return c;let out=c;for(let j=0;j<Math.max(1,intensity);j++){const pool=active[(i+j)%active.length];out+=pool[seededChoice(seed+i,j,pool.length)]}return out}).join("")
+}
+
+const DEFAULT_HOUSE={name:"Amethyst Mycelium",ids:["boldFraktur","mono","script","double","sansReg"],rule:"seeded",seed:"amethyst-mycelium"};
+let houseConfig=clone(DEFAULT_HOUSE);
+let styleById=new Map();
+function normalizeHouseConfig(candidate){
+  const c=candidate&&typeof candidate==="object"?candidate:{};
+  const valid=new Set(styles.filter(s=>s.mixable).map(s=>s.id));
+  const ids=Array.isArray(c.ids)?c.ids.filter(id=>valid.has(id)&&id!=="house").slice(0,6):[];
+  return {name:String(c.name||DEFAULT_HOUSE.name).slice(0,80),ids:ids.length?ids:[...DEFAULT_HOUSE.ids].slice(0,6),rule:["letters","words","vowels","initials","seeded","wordSeeded"].includes(c.rule)?c.rule:DEFAULT_HOUSE.rule,seed:String(c.seed||DEFAULT_HOUSE.seed).slice(0,120)};
+}
+function routeMix(text,config){
+  const ids=(config.ids||[]).filter(id=>styleById.get(id)?.mixable);if(!ids.length)return text;
+  const chars=Array.from(text);let letterIndex=0,wordIndex=-1,inWord=false;
+  return chars.map((c,i)=>{
+    if(!isAsciiLetter(c)){if(/\s/.test(c))inWord=false;return c}
+    const wordStart=!inWord;if(wordStart){wordIndex++;inWord=true}
+    let idx=0;
+    switch(config.rule){
+      case "letters":idx=letterIndex%ids.length;break;
+      case "words":idx=wordIndex%ids.length;break;
+      case "vowels":idx=/[aeiou]/i.test(c)?0:Math.min(1,ids.length-1);break;
+      case "initials":idx=wordStart?0:Math.min(1,ids.length-1);break;
+      case "wordSeeded":idx=seededChoice(config.seed,wordIndex,ids.length);break;
+      default:idx=seededChoice(config.seed,letterIndex,ids.length);
+    }
+    letterIndex++;
+    return styleById.get(ids[idx]).fn(c);
+  }).join("")
+}
+function houseMix(t){return routeMix(t,houseConfig)}
+
+const styles=[
+ {id:"plain",name:"Plain Text",family:"plain",role:"unmodified carrier",fav:true,mixable:true,baseable:true,fn:core.plain},
+ {id:"house",name:"✧ Veil-Script: House Register",family:"house mix",role:"living mixed register",fav:true,mixable:false,baseable:true,fn:houseMix},
+ {id:"fraktur",name:"Archivefang Fraktur",family:"mathematical",role:"archive / old-machine",fav:true,mixable:true,baseable:true,fn:core.fraktur},
+ {id:"boldFraktur",name:"Cathedralwolf Bold Fraktur",family:"mathematical",role:"decree / heavy daemon",fav:true,mixable:true,baseable:true,fn:core.boldFraktur},
+ {id:"boldScript",name:"Lanternspell Bold Script",family:"mathematical",role:"ritual / ornate invitation",fav:true,mixable:true,baseable:true,fn:core.boldScript},
+ {id:"script",name:"Lacepath Script",family:"mathematical",role:"dream-water / delicate register",fav:true,mixable:true,baseable:true,fn:core.script},
+ {id:"double",name:"GlassTheorem Double-Struck",family:"mathematical",role:"concept / theorem / dream logic",fav:true,mixable:true,baseable:true,fn:core.double},
+ {id:"mathBold",name:"Math Bold",family:"mathematical",role:"heavy clean emphasis",fav:true,mixable:true,baseable:true,fn:core.mathBold},
+ {id:"sansReg",name:"Sans Regular",family:"mathematical",role:"quiet technical body",fav:true,mixable:true,baseable:true,fn:core.sansReg},
+ {id:"sansBold",name:"Sans Bold",family:"mathematical",role:"clean system notice",fav:true,mixable:true,baseable:true,fn:core.sansBold},
+ {id:"sansItalic",name:"Sans Italic",family:"mathematical",role:"slanted machine note",fav:false,mixable:true,baseable:true,fn:core.sansItalic},
+ {id:"sansBoldItalic",name:"Sans Bold Italic",family:"mathematical",role:"fast signal / emphasis",fav:true,mixable:true,baseable:true,fn:core.sansBoldItalic},
+ {id:"mono",name:"MonoTerminal",family:"mathematical",role:"machinery / commands",fav:true,mixable:true,baseable:true,fn:core.mono},
+ {id:"fullwidth",name:"VaporDoor Fullwidth",family:"width",role:"dream menu / portal UI",fav:true,mixable:true,baseable:true,fn:core.fullwidth},
+ {id:"small",name:"PocketPlaque Smallcaps",family:"small caps",role:"labels / system whispers",fav:true,mixable:true,baseable:true,fn:core.small},
+ {id:"moonvine",name:"Moonvine",family:"decorative substitution",role:"soft alien handwriting",fav:true,mixable:true,baseable:true,fn:core.moonvine},
+ {id:"runeslab",name:"Runeslab",family:"decorative substitution",role:"carved interface",fav:true,mixable:true,baseable:true,fn:core.runeslab},
+ {id:"greektech",name:"GreekTech",family:"decorative substitution",role:"retro console",fav:true,mixable:true,baseable:true,fn:core.greektech},
+ {id:"blackedge",name:"Blackletter Edge",family:"decorative substitution",role:"metal artifact label",fav:true,mixable:true,baseable:true,fn:core.blackedge},
+ {id:"fauxjp",name:"Faux JP Square",family:"decorative substitution",role:"arcade block glyph",fav:true,mixable:true,baseable:true,fn:core.fauxjp},
+ {id:"runicleaf",name:"Runic Leaf",family:"decorative substitution",role:"forest-map label",fav:true,mixable:true,baseable:true,fn:core.runicleaf},
+ {id:"fauxcyr",name:"Faux Cyrillic",family:"decorative substitution",role:"soft cyberfolk",fav:true,mixable:true,baseable:true,fn:core.fauxcyr},
+ {id:"thai",name:"Thai Ember",family:"decorative substitution",role:"internet-fantasy register",fav:true,mixable:true,baseable:true,fn:core.thai},
+ {id:"canada",name:"Canada Leaf",family:"decorative substitution",role:"blocky poster mode",fav:true,mixable:true,baseable:true,fn:core.canada},
+ {id:"circled",name:"BubbleToken Circled",family:"enclosed",role:"badge / collectible token",fav:true,mixable:true,baseable:true,fn:core.circled},
+ {id:"squared",name:"Squared Letters",family:"enclosed",role:"quiet button-grid",fav:true,mixable:true,baseable:true,fn:core.squared},
+ {id:"negativeCircled",name:"Negative Circled",family:"enclosed",role:"inked bubble-grid",fav:false,mixable:true,baseable:true,fn:core.negativeCircled},
+ {id:"negativeSquared",name:"Negative Squared",family:"enclosed",role:"arcade modal",fav:true,mixable:true,baseable:true,fn:core.negativeSquared},
+ {id:"flags",name:"Regional Signal Flags",family:"enclosed",role:"banner / signal",fav:false,mixable:true,baseable:true,fn:core.flags},
+ {id:"super",name:"Superscript Whisper",family:"vertical register",role:"margin voice",fav:true,mixable:true,baseable:true,fn:core.super},
+ {id:"sub",name:"Subscript Rootnote",family:"vertical register",role:"underlayer / basement voice",fav:true,mixable:true,baseable:true,fn:core.sub},
+ {id:"upside",name:"Upside Down",family:"orientation",role:"mirror-world state",fav:true,mixable:false,baseable:false,fn:core.upside},
+ {id:"mirror",name:"Mirror Room",family:"orientation",role:"reflection / backwards archive",fav:true,mixable:false,baseable:false,fn:core.mirror},
+ {id:"brackets",name:"Bracket Tiles",family:"wrapper",role:"inventory tokens",fav:true,mixable:false,baseable:false,fn:t=>everyChar(t,c=>"【"+c+"】")},
+ {id:"quotes",name:"Quote Tiles",family:"wrapper",role:"ritual token tiles",fav:true,mixable:false,baseable:false,fn:t=>everyChar(t,c=>"『"+c+"』")},
+ {id:"wave",name:"Wave Stitch",family:"wrapper",role:"waterline / signal shimmer",fav:true,mixable:false,baseable:false,fn:t=>everyChar(t,c=>"≋"+c+"≋")},
+ {id:"shade",name:"Shade Blocks",family:"wrapper",role:"pixel fog / retro sample",fav:true,mixable:false,baseable:false,fn:t=>everyChar(t,c=>"░"+c+"░")},
+ {id:"screen",name:"Screen Veil",family:"wrapper",role:"sealed specimen",fav:true,mixable:false,baseable:false,fn:t=>"【﻿"+fullwidth(t)+"】"},
+ {id:"underbar",name:"Underbar Blocks",family:"wrapper",role:"old-forum electric panel",fav:true,mixable:false,baseable:false,fn:t=>everyChar(t,c=>"[̲̅"+c+"]")},
+ {id:"starfield",name:"Starfield Overlay",family:"combining mark",role:"haunted ink / veil shimmer",fav:true,mixable:false,baseable:false,fn:t=>addCombining(t,"҉")},
+ {id:"strike",name:"Strikethrough",family:"combining mark",role:"crossed current",fav:true,mixable:false,baseable:false,fn:t=>addCombining(t,"̶")},
+ {id:"underline",name:"Underline Current",family:"combining mark",role:"floor-line signal",fav:false,mixable:false,baseable:false,fn:t=>addCombining(t,"̲")},
+ {id:"dots",name:"Dotted Aura",family:"combining mark",role:"granular whisper",fav:true,mixable:false,baseable:false,fn:t=>addCombining(t,"͎")},
+ {id:"tears",name:"Moon-Tear Surface",family:"combining mark",role:"rain under the letters",fav:true,mixable:false,baseable:false,fn:t=>addCombining(t,"̥̣")},
+ {id:"zalgoMist",name:"Zalgo Mist",family:"combining mark",role:"controlled reality fracture",fav:true,mixable:false,baseable:false,fn:t=>zalgo(t,{intensity:2,seed:"mist"})},
+ {id:"zalgoDeep",name:"Zalgo Deepstorm",family:"combining mark",role:"high-noise corruption",fav:false,mixable:false,baseable:false,fn:t=>zalgo(t,{intensity:7,seed:"deepstorm"})},
+ {id:"wing",name:"Wingdings Oracle",family:"symbol cipher",role:"oracle / puzzle layer",fav:true,mixable:false,baseable:false,fn:wingdings},
+ {id:"music",name:"Music Box Hybrid",family:"hybrid",role:"ornate generator output",fav:true,mixable:false,baseable:false,fn:musicBox},
+ {id:"ribbon",name:"Ribbon Cake",family:"hybrid",role:"Tumblr cake / sticker mode",fav:true,mixable:false,baseable:false,fn:ribbon},
+ {id:"ransom",name:"Ransom Circus",family:"hybrid",role:"generator-goblin showcase",fav:true,mixable:false,baseable:false,fn:t=>"💣☠  "+hybrid(t,"ransom-circus")+"  👻🐸"}
+];
+styleById=new Map(styles.map(s=>[s.id,s]));
+styles.forEach(s=>s.defaultFav=s.fav);
+const applyStyle=(id,text)=>{try{return (styleById.get(id)||styleById.get("plain")).fn(String(text??""))}catch{return String(text??"")}};
+
+const dividers=[
+ {name:"dream syntax",tags:"dream nested segment",text:"‧₊̣̥✧‧₊̣̥❰⟨⟪✧ segment::dream_syntax ✧⟫⟩❱₊̣̥✧‧₊̣̥"},
+ {name:"cat oversees",tags:"cat terminal",text:"꧁𓃠꧂ 𝕔𝕒𝕥.𝕠𝕧𝕖𝕣𝕤𝕖𝕖𝕤 ꧁𓃠꧂"},
+ {name:"palindrome mirror",tags:"mirror puzzle",text:"I ◇ 🔎 ◇ 🧩 ◇ 🪞 ◇ 🧩 ◇ 🔎 ◇ I"},
+ {name:"soft heart",tags:"heart soft",text:"༺♡༻ :･ﾟ✧:･ﾟ✧ ༺♡༻"},
+ {name:"glyph mycelium",tags:"snake mycelium",text:"𓆙✨ ⦓𝖘𝖍𝖆𝖙𝖙𝖊𝖗𝖊𝖉 𝖌𝖑𝖞𝖕𝖍-𝖒𝖞𝖈𝖊𝖑𝖎𝖚𝖒⦔ ✨𓆙"},
+ {name:"cat seam",tags:"cat kaomoji",text:"✧❖✧ =^._.^=ﾉ彡 ✧❖✧"},
+ {name:"nine crystals",tags:"crystal",text:"꧁⟡⟡⟡⟡⟡⟡⟡⟡⟡꧂"},
+ {name:"black header",tags:"black heart header",text:"༺🖤 header 🖤༻"},
+ {name:"eyes",tags:"eye liminal",text:"👁️꧁꧂ 𝒘𝒆 𝒍𝒊𝒌𝒆 𝒕𝒉𝒂𝒕 𝒚𝒐𝒖 𝒍𝒊𝒌𝒆 𝒕𝒉𝒊𝒔 👁️꧁꧂"},
+ {name:"tiny door",tags:"minimal",text:"◇◆◇"},
+ {name:"star gate",tags:"star retro",text:"╚»★«╝"},
+ {name:"flower gate",tags:"flower palindrome",text:"◦•●◉✿ ✿◉●•◦"},
+ {name:"music seam",tags:"music box",text:"¸¸♬·¯·♩¸¸♪·¯·♫¸¸   ¸¸♫·¯·♪¸¸♩·¯·♬¸¸"},
+ {name:"retro seam",tags:"retro old web",text:"¸,ø¤º°`°º¤ø,¸   ¸,ø¤º°`°º¤ø,¸"},
+ {name:"signal bars",tags:"signal blocks",text:"▁ ▂ ▄ ▅ ▆ ▇ █   █ ▇ ▆ ▅ ▄ ▂ ▁"},
+ {name:"boxed cat",tags:"cat package",text:"⟐⟦ (=^･ω･^=)ﾉﾞ📦✨ ⟧⟐"},
+ {name:"liminal eyes",tags:"eye moon",text:"𓇼☾ ꙰ ꧁꧂👁️   👁️꧁꧂ ꙰ ☽𓇼"},
+ {name:"flower friend",tags:"kaomoji flower",text:"(ꈍᴗꈍ✿) ・。。・゜゜・。。・ (ꈍᴗꈍ✿)"},
+ {name:"startled tunnel",tags:"kaomoji motion",text:"͟͟͞=͟͟͞(꒪⌓꒪*)   (*꒪⌓꒪)͟͟͞=͟͟͞"},
+ {name:"cat familiar",tags:"cat familiar",text:"ฅ^•ﻌ•^ฅ  ✧  ฅ^•ﻌ•^ฅ"},
+ {name:"gift hands",tags:"kaomoji gift heart",text:"(っ◔◡◔)っ ♥   ♥ っ(◔◡◔っ)"}
+];
+const builderFamilies=[
+ {name:"dream terminal",left:"⟨⟪✧ ",right:" ✧⟫⟩"},
+ {name:"nested dream",left:"‧₊̣̥✧‧₊̣̥❰⟨⟪✧ ",right:" ✧⟫⟩❱₊̣̥✧‧₊̣̥"},
+ {name:"cat box",left:"⟐⟦ (=^･ω･^=)ﾉﾞ ",right:" (=^･ω･^=)ﾉﾞ ⟧⟐"},
+ {name:"crystal",left:"꧁⟡ ",right:" ⟡꧂"},
+ {name:"black ribbon",left:"༺🖤 ",right:" 🖤༻"},
+ {name:"eye gate",left:"꧁꧂👁️ ",right:" 👁️꧁꧂"},
+ {name:"snake star",left:"𓆙✨ ⦓",right:"⦔ ✨𓆙"},
+ {name:"soft heart",left:"༺♡༻ :･ﾟ✧ ",right:" ✧:･ﾟ ༺♡༻"},
+ {name:"ASCII star",left:"╚»★«╝ ",right:" ╚»★«╝"},
+ {name:"music box",left:"¸¸♬·¯·♩¸¸♪ ",right:" ♪¸¸♩·¯·♬¸¸"}
+];
+
+const MemoryStore=new Map();
+const storage={
+  get(key){try{const s=window.localStorage;const v=s.getItem(key);if(v!==null)return v}catch{}return MemoryStore.get(key)??null},
+  set(key,value){const v=String(value);MemoryStore.set(key,v);try{window.localStorage.setItem(key,v);return true}catch{return false}},
+  remove(key){MemoryStore.delete(key);try{window.localStorage.removeItem(key)}catch{}},
+  clearPrefix(prefix){for(const k of Array.from(MemoryStore.keys()))if(k.startsWith(prefix))MemoryStore.delete(k);try{const s=window.localStorage;for(let i=s.length-1;i>=0;i--){const k=s.key(i);if(k&&k.startsWith(prefix))s.removeItem(k)}}catch{}}
+};
+const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
+let toastTimer=0;
+function toast(message){const t=$("#toast");t.textContent=message;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),1400)}
+function showManualCopy(text){$("#manualCopyText").value=text;$("#manualCopy").classList.add("show");$("#manualCopy").setAttribute("aria-hidden","false");setTimeout(()=>{$("#manualCopyText").focus();$("#manualCopyText").select()},0)}
+async function copyText(text){
+  const value=String(text??"");
+  if(navigator.clipboard&&window.isSecureContext){try{await navigator.clipboard.writeText(value);toast("copied ✧");return true}catch{}}
+  const ta=document.createElement("textarea");ta.value=value;ta.readOnly=true;ta.style.position="fixed";ta.style.opacity="0";ta.style.left="-9999px";ta.style.top="0";document.body.appendChild(ta);ta.focus();ta.select();ta.setSelectionRange(0,ta.value.length);
+  let ok=false;try{ok=document.execCommand("copy")}catch{}ta.remove();
+  if(ok){toast("copied ✧");return true}showManualCopy(value);return false;
+}
+function safeParse(v,fallback=null){try{return JSON.parse(v)}catch{return fallback}}
+function optionHtml(s){return `<option value="${s.id}">${s.name}</option>`}
+function saveFavorites(){storage.set("veil.favorites",JSON.stringify(Object.fromEntries(styles.map(s=>[s.id,s.fav]))))}
+function loadPreferences(){
+  const fav=safeParse(storage.get("veil.favorites"),null);if(fav&&typeof fav==="object")styles.forEach(s=>{if(s.id in fav)s.fav=!!fav[s.id]});
+  houseConfig=normalizeHouseConfig(safeParse(storage.get("veil.house"),DEFAULT_HOUSE));
+  $("#compactView").checked=storage.get("veil.compact")==="1";
+}
+function persistInput(id){const el=$("#"+id),key="veil.input."+id,saved=storage.get(key);if(saved!==null)el.value=saved;el.addEventListener("input",()=>storage.set(key,el.value))}
+function stats(text){
+  const cps=Array.from(text),gs=graphemes(text);let marks=0,format=0,supplementary=0;
+  cps.forEach(c=>{if(MARK_RE.test(c))marks++;if(/\p{Cf}/u.test(c)||/[\uFE00-\uFE0F]/u.test(c))format++;if(c.codePointAt(0)>0xFFFF)supplementary++});
+  return {graphemes:gs.length,codepoints:cps.length,marks,format,supplementary};
+}
+function statsHtml(s){return `<div class="stat"><strong>${s.graphemes}</strong><span class="micro">graphemes</span></div><div class="stat"><strong>${s.codepoints}</strong><span class="micro">codepoints</span></div><div class="stat"><strong>${s.marks}</strong><span class="micro">combining</span></div><div class="stat"><strong>${s.format}</strong><span class="micro">format marks</span></div>`}
+
+const reverseGlyphMap={};
+Object.values(maps).forEach(map=>Object.entries(map).forEach(([plain,glyph])=>{if(glyph&&glyph!==plain&&!(glyph in reverseGlyphMap))reverseGlyphMap[glyph]=plain}));
+function decodeKnownGlyphs(t){return Array.from(t).map(c=>reverseGlyphMap[c]??c).join("")}
+function stripFormatMarks(t){return t.replace(/[\u200B-\u200F\u202A-\u202E\u2060-\u206F\uFE00-\uFE0F]/gu,"").replace(/[\u{E0100}-\u{E01EF}]/gu,"")}
+function stripWrappers(t){return t.replace(/[【】『』≋░]/gu,"").replace(/[\[\]]/g,"").replace(/[̲̅]/gu,"")}
+function cleanText(t,opts={}){
+  let out=String(t??"");
+  if(opts.nfkc)out=out.normalize("NFKC");
+  if(opts.known)out=decodeKnownGlyphs(out);
+  if(opts.marks)out=stripCombining(out);
+  if(opts.format)out=stripFormatMarks(out);
+  if(opts.wrappers)out=stripWrappers(out);
+  return out;
+}
+function decodeOrientation(t,inverse){return Array.from(t).reverse().map(c=>inverse[c]??c).join("")}
+
+function currentSpec(){return {project:"veil-script-font-garden",version:VERSION,house:clone(houseConfig),favorites:styles.filter(s=>s.fav).map(s=>s.id),styleCount:styles.length,adapters:Object.fromEntries(Object.entries(window.VeilScriptAdapters).map(([k,v])=>[k,!!v]))}}
+function refreshSpecBox(){$("#specBox").value=JSON.stringify(currentSpec(),null,2)}
+function applySpecObject(obj){
+  if(!obj||typeof obj!=="object")throw new Error("Spec must be a JSON object.");
+  if(obj.house){houseConfig=normalizeHouseConfig(obj.house);storage.set("veil.house",JSON.stringify(houseConfig))}
+  if(Array.isArray(obj.favorites)){const set=new Set(obj.favorites);styles.forEach(s=>s.fav=set.has(s.id));saveFavorites()}
+  syncHouseControls();renderAll();updateSingle();updateMix();updateBuiltDivider();refreshSpecBox();updateHero();toast("spec applied ✧");
+}
+function downloadText(filename,text,type="application/json"){
+  const blob=new Blob([text],{type});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)
+}
+
+function initSelects(){
+  const families=[...new Set(styles.map(s=>s.family))];$("#categoryFilter").innerHTML='<option value="all">all families</option>'+families.map(f=>`<option value="${f}">${f}</option>`).join("");
+  $("#singleStyle").innerHTML=styles.map(optionHtml).join("");
+  const mixable=styles.filter(s=>s.mixable&&s.id!=="house");
+  ["mixA","mixB","mixC","mixD","mixE","mixF"].forEach(id=>$("#"+id).innerHTML=mixable.map(optionHtml).join(""));
+  $("#overlayBase").innerHTML=styles.filter(s=>s.baseable).map(optionHtml).join("");
+  $("#dividerCenterStyle").innerHTML=styles.filter(s=>s.mixable||s.id==="house").map(optionHtml).join("");
+  $("#dividerBuilder").innerHTML=builderFamilies.map((x,i)=>`<option value="${i}">${x.name}</option>`).join("");
+  $("#singleStyle").value="house";$("#overlayBase").value="house";$("#dividerCenterStyle").value="plain";
+}
+function renderAll(){
+  const text=$("#masterInput").value,fam=$("#categoryFilter").value,q=$("#styleSearch").value.trim().toLowerCase(),favOnly=$("#favOnly").checked;
+  const visible=styles.filter(s=>(fam==="all"||s.family===fam)&&(!q||`${s.name} ${s.role} ${s.family}`.toLowerCase().includes(q))&&(!favOnly||s.fav));
+  const root=$("#allOutputs");root.classList.toggle("compact",$("#compactView").checked);root.replaceChildren();$("#resultCount").textContent=visible.length;
+  if(!visible.length){const e=document.createElement("div");e.className="empty";e.textContent="No specimens match this filter.";root.appendChild(e);return}
+  const frag=document.createDocumentFragment();
+  visible.forEach(s=>{
+    const card=document.createElement("article");card.className="out-card";card.dataset.id=s.id;
+    const head=document.createElement("div");head.className="out-head";
+    const title=document.createElement("div");title.innerHTML=`<span class="out-title"></span> <span class="small">· ${s.family}</span>`;title.querySelector(".out-title").textContent=s.id==="house"?`✧ Veil-Script: ${houseConfig.name}`:s.name;
+    const actions=document.createElement("div");actions.className="out-actions";
+    const fav=document.createElement("button");fav.type="button";fav.className="iconbtn"+(s.fav?" fav":"");fav.textContent=s.fav?"★":"☆";fav.title="Favorite";fav.onclick=()=>{s.fav=!s.fav;saveFavorites();renderAll();updateSingle();refreshSpecBox()};
+    const inspect=document.createElement("button");inspect.type="button";inspect.className="iconbtn";inspect.textContent="single";inspect.onclick=()=>{$("#singleStyle").value=s.id;$("#singleInput").value=text;updateSingle();activateTab("single")};
+    const cp=document.createElement("button");cp.type="button";cp.className="iconbtn";cp.textContent="copy";cp.onclick=()=>copyText(applyStyle(s.id,text));
+    actions.append(fav,inspect,cp);head.append(title,actions);
+    const out=document.createElement("div");out.className="out-text";out.textContent=applyStyle(s.id,text);
+    card.append(head,out);frag.appendChild(card);
+  });root.appendChild(frag);
+}
+function updateSingle(){
+  const s=styleById.get($("#singleStyle").value)||styleById.get("plain"),out=applyStyle(s.id,$("#singleInput").value);$("#singleOutput").textContent=out;
+  $("#singleMeta").textContent=`${s.family} · ${s.role} · ${Array.from(out).length} codepoints`;$("#favoriteSingle").textContent=s.fav?"★ favorited":"☆ favorite";$("#sendToMix").disabled=!s.mixable||s.id==="house";
+}
+function selectedMixIds(){return ["A","B","C","D","E","F"].filter(x=>$("#mixUse"+x).checked).map(x=>$("#mix"+x).value).filter((v,i,a)=>v&&a.indexOf(v)===i)}
+function updateMix(){
+  const config={ids:selectedMixIds(),rule:$("#mixRule").value,seed:$("#mixSeed").value};$("#mixOutput").textContent=routeMix($("#mixInput").value,config);
+  $("#mixPalette").innerHTML=config.ids.map((id,i)=>`<span class="pill">${String.fromCharCode(65+i)} · ${styleById.get(id)?.name||id}</span>`).join("")||'<span class="pill">plain text fallback</span>';
+}
+function syncHouseControls(){
+  const ids=[...houseConfig.ids];["A","B","C","D","E","F"].forEach((x,i)=>{const id=ids[i]||"plain";$("#mix"+x).value=styleById.get(id)?.mixable?id:"plain";$("#mixUse"+x).checked=i<ids.length});
+  $("#mixRule").value=houseConfig.rule;$("#mixSeed").value=houseConfig.seed;$("#houseName").value=houseConfig.name;updateMix();
+}
+function updateHero(){$("#houseHero").textContent=houseMix(`${houseConfig.name} · glyph-mycelium · dream machine`)}
+function overlayOptions(){return {intensity:+$("#zalgoIntensity").value,seed:"overlay-lab",up:$("#zalgoUp").checked,mid:$("#zalgoMid").checked,down:$("#zalgoDown").checked}}
+function applyOverlayPipeline(){
+  let t=$("#overlayInput").value;if($("#overlayCleanBase").checked)t=stripCombining(t);t=applyStyle($("#overlayBase").value,t);
+  const on=new Set($$(".overlayCheck:checked").map(x=>x.value));if(on.has("starfield"))t=addCombining(t,"҉");if(on.has("strike"))t=addCombining(t,"̶");if(on.has("underline"))t=addCombining(t,"̲");if(on.has("dots"))t=addCombining(t,"͎");if(on.has("tears"))t=addCombining(t,"̥̣");if(on.has("zalgo"))t=zalgo(t,overlayOptions());
+  $("#overlayOutput").textContent=t;$("#overlayStats").innerHTML=statsHtml(stats(t));
+}
+function updateBuiltDivider(){const b=builderFamilies[+$("#dividerBuilder").value]||builderFamilies[0],center=applyStyle($("#dividerCenterStyle").value,$("#dividerCenter").value);$("#builtDivider").textContent=b.left+center+b.right}
+function renderDividers(){
+  const q=$("#dividerSearch").value.trim().toLowerCase(),root=$("#dividerList");root.replaceChildren();const found=dividers.filter(d=>!q||`${d.name} ${d.tags} ${d.text}`.toLowerCase().includes(q));
+  if(!found.length){const e=document.createElement("div");e.className="empty";e.textContent="No boundary specimens match.";root.appendChild(e);return}
+  found.forEach(d=>{const card=document.createElement("div");card.className="divider-card";const head=document.createElement("div");head.className="out-head";const name=document.createElement("span");name.className="out-title";name.textContent=d.name;const cp=document.createElement("button");cp.type="button";cp.className="iconbtn";cp.textContent="copy";cp.onclick=()=>copyText(d.text);head.append(name,cp);const text=document.createElement("div");text.className="divider-text";text.textContent=d.text;card.append(head,text);root.appendChild(card)});
+}
+function cleanOptions(){return {nfkc:$("#cleanNFKC").checked,known:$("#cleanKnown").checked,marks:$("#cleanMarks").checked,format:$("#cleanFormat").checked,wrappers:$("#cleanWrappers").checked}}
+function updateClean(){const input=$("#cleanInput").value,out=cleanText(input,cleanOptions());$("#cleanOutput").textContent=out;$("#cleanInputStats").innerHTML=statsHtml(stats(input));$("#cleanOutputStats").innerHTML=statsHtml(stats(out))}
+function renderAdapters(){
+  const labels={ghostHex:"ghost-hex",zalgoCipher:"zalgo-cipher",overlayCipher:"overlay-cipher",emojiCipher:"emoji-cipher",stegWeb:"steg.web"};
+  $("#adapterGrid").innerHTML=Object.entries(labels).map(([key,label])=>`<div class="adapter"><strong>${label}</strong><span class="status">${window.VeilScriptAdapters[key]?"registered ✓":"reserved · not loaded"}</span></div>`).join("");
+}
+function activateTab(id){
+  const valid=new Set($$(".pane").map(p=>p.id));if(!valid.has(id))id="all";
+  $$(".tab").forEach(b=>{const on=b.dataset.tab===id;b.classList.toggle("active",on);b.setAttribute("aria-selected",String(on));if(on)b.scrollIntoView({block:"nearest",inline:"nearest"})});
+  $$(".pane").forEach(p=>p.classList.toggle("active",p.id===id));storage.set("veil.tab",id);
+}
+function schedule(fn){let pending=0;return()=>{if(pending)return;pending=requestAnimationFrame(()=>{pending=0;fn()})}}
+const scheduleAll=schedule(renderAll);
+
+window.VeilScriptAdapters={ghostHex:null,zalgoCipher:null,overlayCipher:null,emojiCipher:null,stegWeb:null};
+window.VeilScript={
+  version:VERSION,
+  listStyles:()=>styles.map(({id,name,family,role,mixable,baseable})=>({id,name,family,role,mixable,baseable})),
+  apply:applyStyle,
+  mix:(text,config)=>routeMix(String(text??""),normalizeHouseConfig({...DEFAULT_HOUSE,...config})),
+  clean:(text,options)=>cleanText(String(text??""),options||{}),
+  getSpec:currentSpec,
+  registerAdapter(name,adapter){if(!(name in window.VeilScriptAdapters))throw new Error("Unknown adapter: "+name);window.VeilScriptAdapters[name]=adapter;renderAdapters();refreshSpecBox();return true}
+};
+
+function bindEvents(){
+  $("#tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(b)activateTab(b.dataset.tab)});
+  ["masterInput","categoryFilter","styleSearch","favOnly"].forEach(id=>$("#"+id).addEventListener("input",scheduleAll));
+  $("#compactView").addEventListener("change",()=>{storage.set("veil.compact",$("#compactView").checked?"1":"0");renderAll()});
+  ["singleStyle","singleInput"].forEach(id=>$("#"+id).addEventListener("input",updateSingle));
+  ["mixInput","mixA","mixB","mixC","mixD","mixE","mixF","mixUseA","mixUseB","mixUseC","mixUseD","mixUseE","mixUseF","mixRule","mixSeed"].forEach(id=>$("#"+id).addEventListener("input",updateMix));
+  ["overlayInput","overlayBase","overlayCleanBase","zalgoIntensity","zalgoUp","zalgoMid","zalgoDown"].forEach(id=>$("#"+id).addEventListener("input",()=>{$("#intensityRead").textContent=$("#zalgoIntensity").value;applyOverlayPipeline()}));
+  $$(".overlayCheck").forEach(x=>x.addEventListener("change",applyOverlayPipeline));
+  ["dividerCenter","dividerBuilder","dividerCenterStyle"].forEach(id=>$("#"+id).addEventListener("input",updateBuiltDivider));
+  $("#dividerSearch").addEventListener("input",renderDividers);
+  ["cleanInput","cleanNFKC","cleanKnown","cleanMarks","cleanFormat","cleanWrappers"].forEach(id=>$("#"+id).addEventListener("input",updateClean));
+
+  $("#copyAll").onclick=()=>{const text=$("#masterInput").value,fam=$("#categoryFilter").value,q=$("#styleSearch").value.trim().toLowerCase(),favOnly=$("#favOnly").checked;const visible=styles.filter(s=>(fam==="all"||s.family===fam)&&(!q||`${s.name} ${s.role} ${s.family}`.toLowerCase().includes(q))&&(!favOnly||s.fav));copyText(visible.map(s=>`${s.id==="house"?houseConfig.name:s.name}\n${applyStyle(s.id,text)}`).join("\n\n"))};
+  $("#copySingle").onclick=()=>copyText($("#singleOutput").textContent);
+  $("#favoriteSingle").onclick=()=>{const s=styleById.get($("#singleStyle").value);s.fav=!s.fav;saveFavorites();updateSingle();renderAll();refreshSpecBox()};
+  $("#sendToAll").onclick=()=>{$("#masterInput").value=$("#singleInput").value;storage.set("veil.input.masterInput",$("#masterInput").value);renderAll();activateTab("all")};
+  $("#sendToMix").onclick=()=>{const id=$("#singleStyle").value;if(styleById.get(id)?.mixable&&id!=="house"){$("#mixA").value=id;$("#mixUseA").checked=true;updateMix();activateTab("mixer")}};
+  $("#copyMix").onclick=()=>{updateMix();copyText($("#mixOutput").textContent)};
+  $("#randomSeed").onclick=()=>{const bytes=new Uint32Array(2);crypto.getRandomValues(bytes);$("#mixSeed").value=`mycelium-${bytes[0].toString(36)}${bytes[1].toString(36)}`;updateMix()};
+  $("#loadHouse").onclick=syncHouseControls;
+  $("#saveHouse").onclick=()=>{houseConfig=normalizeHouseConfig({name:$("#houseName").value,ids:selectedMixIds(),rule:$("#mixRule").value,seed:$("#mixSeed").value});storage.set("veil.house",JSON.stringify(houseConfig));updateHero();renderAll();updateSingle();applyOverlayPipeline();updateBuiltDivider();refreshSpecBox();toast("house register saved ✧")};
+  $("#resetHouse").onclick=()=>{houseConfig=clone(DEFAULT_HOUSE);storage.set("veil.house",JSON.stringify(houseConfig));syncHouseControls();updateHero();renderAll();updateSingle();applyOverlayPipeline();updateBuiltDivider();refreshSpecBox();toast("house register reset")};
+  $("#copyOverlay").onclick=()=>{applyOverlayPipeline();copyText($("#overlayOutput").textContent)};
+  $("#clearOverlays").onclick=()=>{$$(".overlayCheck").forEach(x=>x.checked=false);applyOverlayPipeline()};
+  $("#copyBuiltDivider").onclick=()=>copyText($("#builtDivider").textContent);
+  $("#unflipInput").onclick=()=>{$("#cleanInput").value=decodeOrientation($("#cleanInput").value,upsideInverse);updateClean()};
+  $("#unmirrorInput").onclick=()=>{$("#cleanInput").value=decodeOrientation($("#cleanInput").value,mirrorInverse);updateClean()};
+  $("#copyClean").onclick=()=>{updateClean();copyText($("#cleanOutput").textContent)};
+  $("#copySpec").onclick=()=>copyText($("#specBox").value);
+  $("#downloadSpec").onclick=()=>downloadText("veil-script-font-garden-spec.json",$("#specBox").value);
+  $("#applySpec").onclick=()=>{try{applySpecObject(JSON.parse($("#specBox").value))}catch(err){toast("spec error: "+err.message)}};
+  $("#resetPrefs").onclick=()=>{
+    if(!confirm("Reset the saved house register, favorites, inputs, and last tab for this file?"))return;
+    storage.clearPrefix("veil.");styles.forEach(s=>s.fav=s.defaultFav);houseConfig=clone(DEFAULT_HOUSE);$("#compactView").checked=false;
+    const defaults={masterInput:"pick your poison",singleInput:"the dream machine remembers",mixInput:"Amethyst boots the dream machine while the cat oversees.",overlayInput:"the veil shimmers",dividerCenter:"segment::dream_syntax",cleanInput:"𝕿𝚑𝓮 𝖈𝚊𝓽 𝕠𝚟𝓮𝖗𝓼𝖊𝓮𝚜 p҉a҉t҉i҉e҉n҉t҉l҉y҉."};Object.entries(defaults).forEach(([id,v])=>$("#"+id).value=v);
+    syncHouseControls();updateHero();renderAll();updateSingle();applyOverlayPipeline();updateBuiltDivider();updateClean();refreshSpecBox();activateTab("all");toast("local settings reset");
+  };
+  $("#selectManualCopy").onclick=()=>{$("#manualCopyText").focus();$("#manualCopyText").select();$("#manualCopyText").setSelectionRange(0,$("#manualCopyText").value.length)};
+  $("#closeManualCopy").onclick=()=>{$("#manualCopy").classList.remove("show");$("#manualCopy").setAttribute("aria-hidden","true")};
+}
+
+function init(){
+  loadPreferences();initSelects();
+  ["masterInput","singleInput","mixInput","overlayInput","dividerCenter","cleanInput"].forEach(persistInput);
+  bindEvents();syncHouseControls();renderAll();updateSingle();applyOverlayPipeline();renderDividers();updateBuiltDivider();updateClean();renderAdapters();refreshSpecBox();updateHero();
+  const savedTab=storage.get("veil.tab");if(savedTab)activateTab(savedTab);
+}
+init();
+})();
+</script>
+</body>
+</html>

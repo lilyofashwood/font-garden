@@ -1,0 +1,213 @@
+{
+  "version": "1.0",
+  "comparison_sentence": "nova remembers what the network forgot",
+  "registers": [
+    {
+      "id": "loomstep",
+      "name": "Loomstep",
+      "family": "alternating",
+      "rule": "Alternate script and monospace by letter position.",
+      "example": "𝓃𝚘𝓋𝚊 𝓇𝚎𝓂𝚎𝓂𝚋ℯ𝚛𝓈 𝚠𝒽𝚊𝓉 𝚝𝒽𝚎 𝓃𝚎𝓉𝚠ℴ𝚛𝓀 𝚏ℴ𝚛ℊ𝚘𝓉",
+      "role": "Balanced intimacy and machinery; readable but visibly woven.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "counterloom",
+      "name": "Counterloom",
+      "family": "alternating",
+      "rule": "Alternate monospace and script, reversing Loomstep’s polarity.",
+      "example": "𝚗ℴ𝚟𝒶 𝚛ℯ𝚖ℯ𝚖𝒷𝚎𝓇𝚜 𝓌𝚑𝒶𝚝 𝓉𝚑ℯ 𝚗ℯ𝚝𝓌𝚘𝓇𝚔 𝒻𝚘𝓇𝚐ℴ𝚝",
+      "role": "A sharper opening stroke with softer afterimages.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "vowelflare",
+      "name": "Vowelflare",
+      "family": "character-class",
+      "rule": "Vowels use bold script; consonants use monospace.",
+      "example": "𝚗𝓸𝚟𝓪 𝚛𝓮𝚖𝓮𝚖𝚋𝓮𝚛𝚜 𝚠𝚑𝓪𝚝 𝚝𝚑𝓮 𝚗𝓮𝚝𝚠𝓸𝚛𝚔 𝚏𝓸𝚛𝚐𝓸𝚝",
+      "role": "Makes sonic nuclei bloom inside a technical skeleton.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "iron-vowels",
+      "name": "Iron Vowels",
+      "family": "character-class",
+      "rule": "Vowels use double-struck; consonants use bold Fraktur.",
+      "example": "𝖓𝕠𝖛𝕒 𝖗𝕖𝖒𝕖𝖒𝖇𝕖𝖗𝖘 𝖜𝖍𝕒𝖙 𝖙𝖍𝕖 𝖓𝕖𝖙𝖜𝕠𝖗𝖐 𝖋𝕠𝖗𝖌𝕠𝖙",
+      "role": "Dense ritual-machine voice; severe but patterned.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "chaos-noodle-ii",
+      "name": "Chaos Noodle II",
+      "family": "character-class",
+      "rule": "Vowels use mathematical bold; consonants use mathematical sans-serif.",
+      "example": "𝗇𝐨𝗏𝐚 𝗋𝐞𝗆𝐞𝗆𝖻𝐞𝗋𝗌 𝗐𝗁𝐚𝗍 𝗍𝗁𝐞 𝗇𝐞𝗍𝗐𝐨𝗋𝗄 𝖿𝐨𝗋𝗀𝐨𝗍",
+      "role": "A quieter, more legible descendant of the original Chaos Noodle.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "primewire",
+      "name": "Primewire",
+      "family": "mathematical-position",
+      "rule": "Prime-numbered letters use Fraktur; all others use monospace.",
+      "example": "𝚗𝔬𝔳𝚊 𝔯𝚎𝔪𝚎𝚖𝚋𝔢𝚛𝔰 𝚠𝚑𝚊𝔱 𝚝𝔥𝚎 𝚗𝚎𝔱𝚠𝚘𝚛𝚔 𝚏𝔬𝚛𝔤𝚘𝚝",
+      "role": "Intermittent encrypted flicker with a deterministic key.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "fibonacci-bloom",
+      "name": "Fibonacci Bloom",
+      "family": "mathematical-position",
+      "rule": "Fibonacci-position letters use bold script; all others use sans-serif.",
+      "example": "𝓷𝓸𝓿𝖺 𝓻𝖾𝗆𝓮𝗆𝖻𝖾𝗋𝓼 𝗐𝗁𝖺𝗍 𝗍𝗁𝖾 𝓷𝖾𝗍𝗐𝗈𝗋𝗄 𝖿𝗈𝗋𝗀𝗈𝗍",
+      "role": "Organic recurrence; flourishes become rarer across long text.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "triune-relay",
+      "name": "Triune Relay",
+      "family": "cyclic",
+      "rule": "Cycle script → monospace → bold sans letter by letter.",
+      "example": "𝓃𝚘𝘃𝒶 𝚛𝗲𝓂𝚎𝗺𝒷𝚎𝗿𝓈 𝚠𝗵𝒶𝚝 𝘁𝒽𝚎 𝗻ℯ𝚝𝘄ℴ𝚛𝗸 𝒻𝚘𝗿ℊ𝚘𝘁",
+      "role": "Three-channel cadence for synthetic voices or dream-computation.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "hex-cathedral",
+      "name": "Hex Cathedral",
+      "family": "cyclic",
+      "rule": "Cycle Fraktur → double-struck → monospace.",
+      "example": "𝔫𝕠𝚟𝔞 𝕣𝚎𝔪𝕖𝚖𝔟𝕖𝚛𝔰 𝕨𝚑𝔞𝕥 𝚝𝔥𝕖 𝚗𝔢𝕥𝚠𝔬𝕣𝚔 𝔣𝕠𝚛𝔤𝕠𝚝",
+      "role": "Occult computation with a cold architectural rhythm.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "wordphase",
+      "name": "Wordphase",
+      "family": "word-rotation",
+      "rule": "Rotate script → monospace → bold sans by word.",
+      "example": "𝓃ℴ𝓋𝒶 𝚛𝚎𝚖𝚎𝚖𝚋𝚎𝚛𝚜 𝘄𝗵𝗮𝘁 𝓉𝒽ℯ 𝚗𝚎𝚝𝚠𝚘𝚛𝚔 𝗳𝗼𝗿𝗴𝗼𝘁",
+      "role": "Preserves word-level readability while giving clauses visible phases.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "quartet-bus",
+      "name": "Quartet Bus",
+      "family": "word-rotation",
+      "rule": "Rotate monospace → italic → double-struck → bold Fraktur by word.",
+      "example": "𝚗𝚘𝚟𝚊 𝑟𝑒𝑚𝑒𝑚𝑏𝑒𝑟𝑠 𝕨𝕙𝕒𝕥 𝖙𝖍𝖊 𝚗𝚎𝚝𝚠𝚘𝚛𝚔 𝑓𝑜𝑟𝑔𝑜𝑡",
+      "role": "Long-form cadence: each word enters a different tonal carriage.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "alphabet-rift",
+      "name": "Alphabet Rift",
+      "family": "character-identity",
+      "rule": "Letters A–M use script; N–Z use monospace.",
+      "example": "𝚗𝚘𝚟𝒶 𝚛ℯ𝓂ℯ𝓂𝒷ℯ𝚛𝚜 𝚠𝒽𝒶𝚝 𝚝𝒽ℯ 𝚗ℯ𝚝𝚠𝚘𝚛𝓀 𝒻𝚘𝚛ℊ𝚘𝚝",
+      "role": "A lexical fault line based on letter identity rather than position.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "threshold-key",
+      "name": "Threshold Key",
+      "family": "word-structure",
+      "rule": "First letter of every word uses double-struck; the rest use monospace.",
+      "example": "𝕟𝚘𝚟𝚊 𝕣𝚎𝚖𝚎𝚖𝚋𝚎𝚛𝚜 𝕨𝚑𝚊𝚝 𝕥𝚑𝚎 𝕟𝚎𝚝𝚠𝚘𝚛𝚔 𝕗𝚘𝚛𝚐𝚘𝚝",
+      "role": "Strong navigational anchors without heavy headings.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "cathedral-core",
+      "name": "Cathedral Core",
+      "family": "word-structure",
+      "rule": "First and last letters use bold Fraktur; interiors use sans-serif.",
+      "example": "𝖓𝗈𝗏𝖆 𝖗𝖾𝗆𝖾𝗆𝖻𝖾𝗋𝖘 𝖜𝗁𝖺𝖙 𝖙𝗁𝖊 𝖓𝖾𝗍𝗐𝗈𝗋𝖐 𝖋𝗈𝗋𝗀𝗈𝖙",
+      "role": "Each word becomes a sealed reliquary.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "bioluminal-split",
+      "name": "Bioluminal Split",
+      "family": "word-structure",
+      "rule": "First half of each word uses script; second half uses monospace.",
+      "example": "𝓃ℴ𝚟𝚊 𝓇ℯ𝓂ℯ𝓂𝚋𝚎𝚛𝚜 𝓌𝒽𝚊𝚝 𝓉𝒽𝚎 𝓃ℯ𝓉𝓌𝚘𝚛𝚔 𝒻ℴ𝓇𝚐𝚘𝚝",
+      "role": "A soft-to-mechanical transition inside every lexical unit.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "entangled-mirror",
+      "name": "Entangled Mirror",
+      "family": "symmetry",
+      "rule": "Mirrored positions inside each word share the same rotating style.",
+      "example": "𝓃𝚘𝚟𝒶 𝓇𝚎𝗺ℯ𝚖𝒷𝗲𝚛𝓈 𝓌𝚑𝚊𝓉 𝓉𝚑ℯ 𝓃𝚎𝘁𝓌𝗼𝚛𝓀 𝒻𝚘𝗿𝗴𝚘𝓉",
+      "role": "Visible bilateral symmetry for time-loop or entanglement language.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "echo-memory",
+      "name": "Echo Memory",
+      "family": "stateful",
+      "rule": "A letter’s first appearance is monospace; later recurrences use bold script.",
+      "example": "𝚗𝚘𝚟𝚊 𝚛𝚎𝚖𝓮𝓶𝚋𝓮𝓻𝚜 𝚠𝚑𝓪𝚝 𝓽𝓱𝓮 𝓷𝓮𝓽𝔀𝓸𝓻𝚔 𝚏𝓸𝓻𝚐𝓸𝓽",
+      "role": "The sentence visibly remembers its own alphabet.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "geminate-scar",
+      "name": "Geminate Scar",
+      "family": "stateful",
+      "rule": "Adjacent repeated letters switch to bold Fraktur; other letters remain sans-serif.",
+      "example": "𝗇𝗈𝗏𝖺 𝗋𝖾𝗆𝖾𝗆𝖻𝖾𝗋𝗌 𝗐𝗁𝖺𝗍 𝗍𝗁𝖾 𝗇𝖾𝗍𝗐𝗈𝗋𝗄 𝖿𝗈𝗋𝗀𝗈𝗍",
+      "role": "Makes doubled letters and stutters into structural events.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "three-seal-word",
+      "name": "Three-Seal Word",
+      "family": "word-structure",
+      "rule": "First letter double-struck, middle monospace, final letter bold script.",
+      "example": "𝕟𝚘𝚟𝓪 𝕣𝚎𝚖𝚎𝚖𝚋𝚎𝚛𝓼 𝕨𝚑𝚊𝓽 𝕥𝚑𝓮 𝕟𝚎𝚝𝚠𝚘𝚛𝓴 𝕗𝚘𝚛𝚐𝚘𝓽",
+      "role": "Every word has an opening sigil, data body, and luminous closure.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "third-signal",
+      "name": "Third Signal",
+      "family": "mathematical-position",
+      "rule": "Every third letter is bold italic; all others are monospace.",
+      "example": "𝚗𝚘𝒗𝚊 𝚛𝒆𝚖𝚎𝒎𝚋𝚎𝒓𝚜 𝚠𝒉𝚊𝚝 𝒕𝚑𝚎 𝒏𝚎𝚝𝒘𝚘𝚛𝒌 𝚏𝚘𝒓𝚐𝚘𝒕",
+      "role": "Regular telemetry pulse without sacrificing legibility.",
+      "reversibility": "lossless by Unicode normalization"
+    },
+    {
+      "id": "root-access",
+      "name": "Root Access",
+      "family": "substitution",
+      "rule": "Consonants are monospace; vowels become leetspeak symbols; spaces become middle dots.",
+      "example": "𝚗0𝚟4·𝚛3𝚖3𝚖𝚋3𝚛𝚜·𝚠𝚑4𝚝·𝚝𝚑3·𝚗3𝚝𝚠0𝚛𝚔·𝚏0𝚛𝚐0𝚝",
+      "role": "Readable hacker register with an explicit substitution key.",
+      "reversibility": "lossless only with substitution table"
+    },
+    {
+      "id": "blacksite-packet",
+      "name": "Blacksite Packet",
+      "family": "cyclic-interface",
+      "rule": "Cycle four alphabets and replace spaces with namespace separators.",
+      "example": "⟦𝚗𝗼𝖛𝕒::𝚛𝗲𝖒𝕖𝚖𝗯𝖊𝕣𝚜::𝘄𝖍𝕒𝚝::𝘁𝖍𝕖::𝚗𝗲𝖙𝕨𝚘𝗿𝖐::𝕗𝚘𝗿𝖌𝕠𝚝⟧",
+      "role": "Terminal or agent voice; compact, procedural, and slightly hostile.",
+      "reversibility": "lossless by normalization plus separator restoration"
+    },
+    {
+      "id": "ghost-carrier",
+      "name": "Ghost Carrier",
+      "family": "signal-corruption",
+      "rule": "Cycle three alphabets with sparse combining marks and signal separators.",
+      "example": "𝚗𝗈̲𝖛𝚊͟ ⌁ 𝗋𝖊̲𝚖𝖾͟𝖒𝚋̲𝖾𝖗͟𝚜 ⌁ 𝗐̲𝖍𝚊͟𝗍 ⌁ 𝖙̲𝚑𝖾͟ ⌁ 𝖓𝚎̲𝗍𝖜͟𝚘𝗋̲𝖐 ⌁ 𝚏͟𝗈𝖗̲𝚐𝗈͟𝖙",
+      "role": "Corrupted transmission that remains recoverable by eye.",
+      "reversibility": "lossless after stripping combining marks and normalizing"
+    }
+  ]
+}

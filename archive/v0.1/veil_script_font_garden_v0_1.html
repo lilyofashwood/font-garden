@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Veil-Script Font Garden</title>
+<style>
+:root{
+  --bg:#0d0d12; --panel:#15151d; --panel2:#1b1b26; --line:#303044;
+  --text:#f3f0ff; --muted:#aaa4be; --glow:#bda7ff; --hot:#f2b8ff;
+  --ok:#a7ffd4; --shadow:0 18px 60px rgba(0,0,0,.34);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
+body{margin:0;min-height:100vh;background:
+ radial-gradient(circle at 15% 0%,rgba(116,74,180,.17),transparent 34rem),
+ radial-gradient(circle at 100% 20%,rgba(85,116,190,.11),transparent 28rem),var(--bg)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.shell{max-width:1180px;margin:auto;padding:18px 14px 72px}
+.hero{padding:18px 16px 10px}
+.brand{font-size:clamp(22px,5vw,42px);line-height:1.05;margin:0 0 8px;letter-spacing:-.03em}
+.house-sample{font-size:clamp(18px,4vw,29px);line-height:1.5;overflow-wrap:anywhere}
+.sub{color:var(--muted);line-height:1.5;max-width:860px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}
+.badge{border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:var(--muted);font-size:12px;background:rgba(255,255,255,.02)}
+.tabs{position:sticky;top:0;z-index:30;display:flex;gap:7px;overflow:auto;padding:10px 2px;background:linear-gradient(var(--bg) 75%,transparent)}
+.tab{border:1px solid var(--line);color:var(--muted);background:var(--panel);padding:9px 12px;border-radius:11px;white-space:nowrap}
+.tab.active{color:var(--text);border-color:var(--glow);box-shadow:0 0 0 1px rgba(189,167,255,.18) inset}
+.pane{display:none}.pane.active{display:block}
+.card{background:rgba(21,21,29,.92);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px;margin:10px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}.shell{padding-left:10px;padding-right:10px}}
+label{display:block;color:var(--muted);font-size:12px;margin:5px 0 7px}
+textarea,input,select{width:100%;background:#0d0d13;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:11px;outline:none}
+textarea{min-height:116px;resize:vertical}
+textarea:focus,input:focus,select:focus{border-color:var(--glow);box-shadow:0 0 0 2px rgba(189,167,255,.08)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row>*{min-width:0}
+.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:8px 10px;border-radius:10px}
+.btn:hover{border-color:var(--glow)}
+.btn.hot{border-color:var(--glow);background:rgba(189,167,255,.11)}
+.small{font-size:12px;color:var(--muted)}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.toolbar select,.toolbar input{width:auto;min-width:140px;flex:1}
+.output-list{display:grid;gap:9px}
+.out-card{border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.018);overflow:hidden}
+.out-head{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:9px 10px;border-bottom:1px solid rgba(48,48,68,.65)}
+.out-title{font-size:12px;color:var(--muted)}
+.out-actions{display:flex;gap:5px}
+.iconbtn{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:8px;padding:5px 8px}
+.iconbtn:hover,.iconbtn.fav{color:var(--text);border-color:var(--glow)}
+.out-text{padding:13px;font-size:20px;line-height:1.55;overflow-wrap:anywhere;min-height:56px;user-select:text}
+.big-output{font-size:clamp(22px,4.8vw,42px);line-height:1.45;overflow-wrap:anywhere;padding:18px;border:1px dashed var(--line);border-radius:13px;background:#0d0d13;min-height:120px}
+.section-title{margin:4px 0 12px;font-size:18px}
+.divider-card{border:1px solid var(--line);border-radius:12px;padding:11px;margin:8px 0;background:rgba(255,255,255,.018)}
+.divider-text{font-size:17px;line-height:1.55;overflow-wrap:anywhere;text-align:center}
+.checks{display:flex;gap:8px;flex-wrap:wrap}
+.check{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:10px;padding:7px 9px;background:#111119}
+.check input{width:auto}
+.range{display:flex;align-items:center;gap:10px}.range input{flex:1}
+.kicker{color:var(--hot)}
+.notice{border-left:3px solid var(--glow);padding:9px 11px;background:rgba(189,167,255,.06);border-radius:0 9px 9px 0;color:var(--muted);line-height:1.45}
+code.inline{color:var(--ok);background:#0c0c11;padding:2px 5px;border-radius:5px}
+.toast{position:fixed;right:16px;bottom:16px;z-index:100;background:#20202c;color:var(--text);border:1px solid var(--glow);border-radius:10px;padding:10px 13px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.18s}
+.toast.show{opacity:1;transform:none}
+details{border:1px solid var(--line);border-radius:12px;padding:10px;background:rgba(255,255,255,.015)}
+summary{cursor:pointer;color:var(--muted)}
+.footer{color:var(--muted);font-size:12px;line-height:1.6;padding:16px 4px}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="hero">
+    <h1 class="brand">꧁𓃠꧂ Veil-Script Font Garden ꧁𓃠꧂</h1>
+    <div id="houseHero" class="house-sample">𝕬𝚖𝓮𝖙𝚑𝓎𝖘𝚝 · 𝖌𝚕𝓎𝖕𝚑-𝖒𝚢𝓬𝖊𝚕𝓲𝖚𝚖</div>
+    <p class="sub">Ad-free, single-file Unicode font changer. The default house register is <b>Veil-Script: Amethyst Mycelium</b>, a deterministic mixed-glyph style built from the favorite families rather than one uniform alphabet.</p>
+    <div class="badges">
+      <span class="badge">offline</span><span class="badge">no trackers</span><span class="badge">copy/paste Unicode</span>
+      <span class="badge">mix + match</span><span class="badge">overlay lab</span><span class="badge">cowmoji boundaries ✧</span>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-tab="all">ALL FONTS</button>
+    <button class="tab" data-tab="single">SINGLE</button>
+    <button class="tab" data-tab="mixer">MIXER</button>
+    <button class="tab" data-tab="overlays">OVERLAYS</button>
+    <button class="tab" data-tab="dividers">COWMOJI / BOUNDARIES</button>
+    <button class="tab" data-tab="about">SPEC / HOOKS</button>
+  </nav>
+
+  <section id="all" class="pane active">
+    <div class="card">
+      <label for="masterInput">type once, render everywhere</label>
+      <textarea id="masterInput">pick your poison</textarea>
+      <div class="toolbar">
+        <select id="categoryFilter"><option value="all">all families</option></select>
+        <input id="styleSearch" placeholder="search styles…">
+        <label class="check"><input type="checkbox" id="favOnly"> favorites only</label>
+        <button class="btn" id="copyAll">copy visible set</button>
+      </div>
+    </div>
+    <div id="allOutputs" class="output-list"></div>
+  </section>
+
+  <section id="single" class="pane">
+    <div class="grid2">
+      <div class="card">
+        <h2 class="section-title">single specimen</h2>
+        <label>style</label><select id="singleStyle"></select>
+        <label>text</label><textarea id="singleInput">the dream machine remembers</textarea>
+        <div class="row"><button class="btn hot" id="copySingle">copy result</button><button class="btn" id="sendToAll">send text to all fonts</button></div>
+      </div>
+      <div class="card">
+        <label>live output</label><div id="singleOutput" class="big-output"></div>
+        <p id="singleMeta" class="small"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="mixer" class="pane">
+    <div class="card">
+      <h2 class="section-title">𝕸𝚒𝓍𝖊𝕕 𝖌𝚕𝓎𝖕𝚑 𝕤𝚢𝓃𝖙𝚊𝚡</h2>
+      <div class="notice">Pick registers and a routing rule. This is the part that makes <span class="kicker">𝕬𝚖𝓮𝖙𝚑𝓎𝖘𝚝</span> behave like a living alphabet instead of a novelty-font dropdown.</div>
+      <label>text</label><textarea id="mixInput">Amethyst boots the dream machine while the cat oversees.</textarea>
+      <div class="grid2">
+        <div>
+          <label>register A</label><select class="mixStyle" id="mixA"></select>
+          <label>register B</label><select class="mixStyle" id="mixB"></select>
+        </div>
+        <div>
+          <label>register C</label><select class="mixStyle" id="mixC"></select>
+          <label>register D</label><select class="mixStyle" id="mixD"></select>
+        </div>
+      </div>
+      <div class="toolbar">
+        <select id="mixRule">
+          <option value="letters">cycle letters</option>
+          <option value="words">cycle words</option>
+          <option value="vowels">vowels / consonants</option>
+          <option value="initials">word initials / body</option>
+          <option value="seeded">seeded scatter</option>
+        </select>
+        <input id="mixSeed" value="amethyst" placeholder="seed">
+        <button class="btn" id="housePreset">load house mix</button>
+        <button class="btn hot" id="copyMix">copy mix</button>
+      </div>
+      <div id="mixOutput" class="big-output"></div>
+    </div>
+  </section>
+
+  <section id="overlays" class="pane">
+    <div class="grid2">
+      <div class="card">
+        <h2 class="section-title">overlay lab</h2>
+        <p class="small">Visible overlays only in this build. Zalgo here is a display engine, not the separate steganographic <code class="inline">zalgo-cipher</code> implementation.</p>
+        <label>text</label><textarea id="overlayInput">the veil shimmers</textarea>
+        <label>base register</label><select id="overlayBase"></select>
+        <div class="checks" style="margin-top:10px">
+          <label class="check"><input type="checkbox" value="starfield" class="overlayCheck"> starfield ҉</label>
+          <label class="check"><input type="checkbox" value="strike" class="overlayCheck"> strike</label>
+          <label class="check"><input type="checkbox" value="underline" class="overlayCheck"> underline</label>
+          <label class="check"><input type="checkbox" value="dots" class="overlayCheck"> dotted aura</label>
+          <label class="check"><input type="checkbox" value="tears" class="overlayCheck"> moon-tears</label>
+          <label class="check"><input type="checkbox" value="zalgo" class="overlayCheck"> zalgo</label>
+        </div>
+        <label>zalgo intensity</label>
+        <div class="range"><input type="range" id="zalgoIntensity" min="1" max="8" value="3"><span id="intensityRead">3</span></div>
+        <button class="btn hot" id="copyOverlay">copy overlay</button>
+      </div>
+      <div class="card"><label>live output</label><div id="overlayOutput" class="big-output"></div></div>
+    </div>
+  </section>
+
+  <section id="dividers" class="pane">
+    <div class="card">
+      <h2 class="section-title">cowmoji / palindromic boundary garden =^._.^=ﾉ彡</h2>
+      <p class="small">Separate from fonts on purpose. These are wrappers, scene cuts, terminal seams, ritual borders, cat machinery, and tiny symmetrical doors.</p>
+      <div class="grid2">
+        <div>
+          <label>center label</label><input id="dividerCenter" value="segment::dream_syntax">
+        </div>
+        <div>
+          <label>boundary family</label><select id="dividerBuilder"></select>
+        </div>
+      </div>
+      <div id="builtDivider" class="big-output" style="font-size:18px;text-align:center;margin-top:10px"></div>
+      <div class="row" style="margin-top:8px"><button class="btn hot" id="copyBuiltDivider">copy built divider</button></div>
+    </div>
+    <div id="dividerList"></div>
+  </section>
+
+  <section id="about" class="pane">
+    <div class="card">
+      <h2 class="section-title">spec notes + future adapters</h2>
+      <p class="sub">This file treats “fonts” as Unicode transformations: mathematical alphabets, decorative substitutions, orientation transforms, wrappers, combining marks, and symbolic sets. It intentionally keeps the future steganography engines separate from the visible font generator.</p>
+      <details open>
+        <summary>house register</summary>
+        <p><b>Veil-Script: Amethyst Mycelium</b> cycles selected glyph families at character level with a stable seed. It is meant to reproduce the hand-built mixed register: technical, dreamlike, legible, and slightly alive.</p>
+      </details>
+      <details style="margin-top:9px">
+        <summary>reserved integration hooks</summary>
+        <pre class="small">window.VeilScriptAdapters = {
+  ghostHex: null,
+  zalgoCipher: null,
+  overlayCipher: null,
+  emojiCipher: null,
+  stegWeb: null
+}</pre>
+        <p class="small">The slots exist so the visual generator can become a precursor/interface for the cipher suite without pretending the font changer itself is the cipher.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer class="footer">༺☾ built as one portable HTML file · no ads · no external JavaScript · no font files ☽༻</footer>
+</div>
+<div class="toast" id="toast">copied ✧</div>
+
+<script>
+(() => {
+"use strict";
+const ABC="abcdefghijklmnopqrstuvwxyz", ABCU=ABC.toUpperCase();
+const cpRange=(start,n=26)=>Array.from({length:n},(_,i)=>String.fromCodePoint(start+i)).join("");
+function makeMap(lower,upper){
+  const m={};
+  Array.from(lower).forEach((c,i)=>m[ABC[i]]=c);
+  Array.from(upper||lower.toUpperCase()).forEach((c,i)=>m[ABCU[i]]=c);
+  return m;
+}
+const mapText=(text,map)=>Array.from(text).map(c=>map[c]??c).join("");
+
+const maps = {};
+maps.mathBold=makeMap(cpRange(0x1D41A),cpRange(0x1D400));
+maps.sansReg=makeMap(cpRange(0x1D5BA),cpRange(0x1D5A0));
+maps.sansBold=makeMap(cpRange(0x1D5EE),cpRange(0x1D5D4));
+maps.sansItalic=makeMap(cpRange(0x1D622),cpRange(0x1D608));
+maps.sansBoldItalic=makeMap(cpRange(0x1D656),cpRange(0x1D63C));
+maps.mono=makeMap(cpRange(0x1D68A),cpRange(0x1D670));
+maps.boldFraktur=makeMap(cpRange(0x1D586),cpRange(0x1D56C));
+maps.boldScript=makeMap(cpRange(0x1D4EA),cpRange(0x1D4D0));
+maps.fraktur=makeMap(
+  "𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷",
+  "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ"
+);
+maps.script=makeMap(
+  "𝒶𝒷𝒸𝒹ℯ𝒻ℊ𝒽𝒾𝒿𝓀𝓁𝓂𝓃ℴ𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏",
+  "𝒜ℬ𝒞𝒟ℰℱ𝒢ℋℐ𝒥𝒦ℒℳ𝒩𝒪𝒫𝒬ℛ𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵"
+);
+maps.double=makeMap(
+  "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫",
+  "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ"
+);
+maps.circled=makeMap(cpRange(0x24D0),cpRange(0x24B6));
+maps.squared=makeMap(cpRange(0x1F150),cpRange(0x1F130));
+maps.negative=makeMap(cpRange(0x1F170),cpRange(0x1F170));
+maps.flags={}; Array.from(ABCU).forEach((c,i)=>{maps.flags[c]=String.fromCodePoint(0x1F1E6+i); maps.flags[c.toLowerCase()]=String.fromCodePoint(0x1F1E6+i);});
+
+maps.small=makeMap("ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡxʏᴢ","ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡxʏᴢ");
+maps.super=makeMap("ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖ𐞥ʳˢᵗᵘᵛʷˣʸᶻ","ᴬᴮꟲᴰᴱꟳᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾ𐞥ᴿˢᵀᵁⱽᵂˣʸᶻ");
+maps.sub=makeMap("ₐᵦc_dₑf₉ₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓᵧz".replaceAll("_",""),"ₐᵦC_DₑF₉HᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓᵧZ".replaceAll("_",""));
+
+const customSets = {
+ moonvine:"ꪖ᥇ᥴᦔꫀᠻᧁꫝ꠸᧒ᛕꪶꪑꪀꪮρᑫ᥅ᦓꪻꪊꪜ᭙᥊ꪗƺ",
+ runeslab:"ꍏꌃꉓꀸꍟꎇꁅꃅꀤꀭꀘ꒒ꂵꈤꂦꉣꆰꋪꌗ꓄ꀎꃴꅏꊼꌩꁴ",
+ greektech:"ΛBᄃDΣFGΉIJKᄂMПӨPQЯƧƬЦVЩXУZ",
+ blackedge:"₳฿₵ĐɆ₣₲ⱧłJ₭Ⱡ₥₦Ø₱QⱤ₴₮ɄV₩ӾɎⱫ",
+ fauxjp:"卂乃匚ᗪ乇千Ꮆ卄丨ﾌҜㄥ爪几ㄖ卩Ɋ尺丂ㄒㄩᐯ山乂ㄚ乙",
+ runicleaf:"ᎪᏴᏟᎠᎬᎰᏩᎻᏆᎫᏦᏞᎷᏁᎾᏢϘᏒᏚᎢᏬᏙᏔጀᎩᏃ",
+ fauxcyr:"αɓƈԃҽϝɠԋιʝƙʅɱɳσρϙɾʂƚυʋɯxყȥ",
+ thai:"ค๒ς๔єŦﻮђเןкɭ๓ภ๏קợгรՇยשฬאץչ",
+ canada:"ᗩᗷᑕᗪEᖴGᕼIᒍKᒪᗰᑎOᑭᑫᖇᔕTᑌᐯᗯ᙭Yᘔ"
+};
+Object.entries(customSets).forEach(([k,set])=>{
+  let arr=Array.from(set); let m={};
+  Array.from(ABC).forEach((c,i)=>{m[c]=arr[i]||c; m[c.toUpperCase()]=(arr[i]||c).toUpperCase();});
+  maps[k]=m;
+});
+
+const upsideMap = Object.assign({}, ...Object.entries({
+ a:"ɐ",b:"q",c:"ɔ",d:"p",e:"ǝ",f:"ɟ",g:"ƃ",h:"ɥ",i:"ᴉ",j:"ɾ",k:"ʞ",l:"l",m:"ɯ",n:"u",o:"o",p:"d",q:"b",r:"ɹ",s:"s",t:"ʇ",u:"n",v:"ʌ",w:"ʍ",x:"x",y:"ʎ",z:"z",
+ A:"∀",B:"𐐒",C:"Ɔ",D:"◖",E:"Ǝ",F:"Ⅎ",G:"פ",H:"H",I:"I",J:"ſ",K:"⋊",L:"˥",M:"W",N:"N",O:"O",P:"Ԁ",Q:"Ό",R:"ᴚ",S:"S",T:"⊥",U:"∩",V:"Λ",W:"M",X:"X",Y:"⅄",Z:"Z",
+ "?":"¿","!":"¡","(" :")",")":"(","[":"]","]":"[","{":"}","}":"{"
+}).map(([k,v])=>({[k]:v})));
+const mirrorMap={a:"ɒ",b:"d",c:"ɔ",d:"b",e:"ɘ",f:"ʇ",g:"ǫ",h:"ʜ",i:"i",j:"ꞁ",k:"ʞ",l:"|",m:"m",n:"ᴎ",o:"o",p:"q",q:"p",r:"ɿ",s:"ꙅ",t:"ƚ",u:"u",v:"v",w:"w",x:"x",y:"ʏ",z:"z"};
+
+function fullwidth(t){return Array.from(t).map(c=>c===" "?"　":(c.charCodeAt(0)>=33&&c.charCodeAt(0)<=126?String.fromCharCode(c.charCodeAt(0)+0xFEE0):c)).join("")}
+function reverseMap(t,m){return Array.from(t).reverse().map(c=>m[c]??m[c.toLowerCase()]??c).join("")}
+function everyChar(t,wrapper){return Array.from(t).map(c=>/\s/.test(c)?c:wrapper(c)).join("")}
+function addCombining(t,marks,count=1){return Array.from(t).map(c=>/[A-Za-z\u00C0-\u02AF\u1D400-\u1D7FF]/u.test(c)?c+marks.repeat(count):c).join("")}
+function hash(s){let h=2166136261; for(const c of s){h^=c.codePointAt(0); h=Math.imul(h,16777619)} return h>>>0}
+function seededChoice(seed,i,n){let x=hash(seed+":"+i); x^=x<<13; x^=x>>>17; x^=x<<5; return Math.abs(x)%n}
+
+const coreTransforms = {
+ fraktur:t=>mapText(t,maps.fraktur),
+ boldFraktur:t=>mapText(t,maps.boldFraktur),
+ boldScript:t=>mapText(t,maps.boldScript),
+ script:t=>mapText(t,maps.script),
+ double:t=>mapText(t,maps.double),
+ mono:t=>mapText(t,maps.mono),
+ sansReg:t=>mapText(t,maps.sansReg),
+ sansBold:t=>mapText(t,maps.sansBold),
+ sansItalic:t=>mapText(t,maps.sansItalic),
+ sansBoldItalic:t=>mapText(t,maps.sansBoldItalic),
+ mathBold:t=>mapText(t,maps.mathBold),
+ fullwidth,
+ small:t=>mapText(t,maps.small),
+ circled:t=>mapText(t,maps.circled),
+ squared:t=>mapText(t,maps.squared),
+ negative:t=>mapText(t.toUpperCase(),maps.negative),
+ flags:t=>mapText(t.toUpperCase(),maps.flags),
+ super:t=>mapText(t,maps.super),
+ sub:t=>mapText(t,maps.sub),
+ moonvine:t=>mapText(t,maps.moonvine),
+ runeslab:t=>mapText(t,maps.runeslab),
+ greektech:t=>mapText(t.toUpperCase(),maps.greektech),
+ blackedge:t=>mapText(t.toUpperCase(),maps.blackedge),
+ fauxjp:t=>mapText(t.toUpperCase(),maps.fauxjp),
+ runicleaf:t=>mapText(t,maps.runicleaf),
+ fauxcyr:t=>mapText(t,maps.fauxcyr),
+ thai:t=>mapText(t,maps.thai),
+ canada:t=>mapText(t.toUpperCase(),maps.canada),
+ upside:t=>reverseMap(t,upsideMap),
+ mirror:t=>reverseMap(t,mirrorMap)
+};
+
+function houseMix(text,seed="amethyst-mycelium"){
+  const fs=[coreTransforms.boldFraktur,coreTransforms.mono,coreTransforms.script,coreTransforms.double,coreTransforms.sansReg];
+  let letterIndex=0;
+  return Array.from(text).map((c,i)=>{
+    if(!/[A-Za-z]/.test(c)) return c;
+    const f=fs[(letterIndex + seededChoice(seed,i,fs.length))%fs.length];
+    letterIndex++;
+    return f(c);
+  }).join("");
+}
+function hybrid(text,seed="ransom"){
+  const fs=[coreTransforms.boldFraktur,coreTransforms.boldScript,coreTransforms.double,coreTransforms.fullwidth,coreTransforms.circled,coreTransforms.small,coreTransforms.greektech,coreTransforms.fauxjp];
+  return Array.from(text).map((c,i)=>/[A-Za-z]/.test(c)?fs[seededChoice(seed,i,fs.length)](c):c).join("");
+}
+function ribbon(text){let i=0, em=["🌸","♡","🍪","💞","❀","💍"]; return "🎀  "+Array.from(coreTransforms.script(text)).map(c=>/[A-Za-z\u1D400-\u1D7FF]/u.test(c)&&i++%7===4?c+em[i%em.length]:c).join("")+"  🎀"}
+function musicBox(text){return "¸¸♬·¯·♩¸¸♪·¯·♫¸¸ "+hybrid(text,"music-box")+" ¸¸♫·¯·♪¸¸♩·¯·♬¸¸"}
+function wingdings(text){
+ const symbols=Array.from("✌︎︎♌︎♍︎♎︎♏︎♐︎♑︎♒︎♓︎🙰🙵●︎❍︎■︎□︎◻︎❒︎⬧︎⧫︎◆︎❖︎⬥︎⌧︎⍓︎⌘︎");
+ let m={}; Array.from(ABC).forEach((c,i)=>{m[c]=symbols[i]||"◈";m[c.toUpperCase()]=symbols[i]||"◈"}); return mapText(text,m)
+}
+const zalgoUp=["̍","̎","̄","̅","̿","̑","̆","̐","͒","͗","͑","̇","̈","̊","͂","̓","̈́","͊","͋","͌","̃","̂","̌","͐","̀","́","̋","̏","̒","̓","̔","̽","̉","ͣ","ͤ","ͥ","ͦ","ͧ","ͨ","ͩ","ͪ","ͫ","ͬ","ͭ","ͮ","ͯ","̾","͛","͆","̚"];
+const zalgoMid=["̕","̛","̀","́","͘","̡","̢","̧","̨","̴","̵","̶","͏","͜","͝","͞","͟","͠","͢","̸","̷","͡","҉"];
+const zalgoDown=["̖","̗","̘","̙","̜","̝","̞","̟","̠","̤","̥","̦","̩","̪","̫","̬","̭","̮","̯","̰","̱","̲","̳","̹","̺","̻","̼","ͅ","͇","͈","͉","͍","͎","͓","͔","͕","͖","͙","͚","̣"];
+function zalgo(text,intensity=3,seed="veil"){
+ let n=0; return Array.from(text).map((c,i)=>{
+   if(/\s/.test(c)) return c;
+   let out=c; const count=Math.max(1,intensity);
+   for(let j=0;j<count;j++){let pools=[zalgoUp,zalgoMid,zalgoDown],p=pools[(j+i)%3];out+=p[seededChoice(seed+i,j,p.length)]}
+   n++; return out;
+ }).join("")
+}
+
+const styles=[
+ {id:"house",name:"✧ Veil-Script: Amethyst Mycelium",family:"house mix",role:"living mixed register",fav:true,fn:t=>houseMix(t)},
+ {id:"fraktur",name:"Archivefang Fraktur",family:"mathematical",role:"archive / old-machine",fav:true,fn:coreTransforms.fraktur},
+ {id:"boldFraktur",name:"Cathedralwolf Bold Fraktur",family:"mathematical",role:"decree / heavy daemon",fav:true,fn:coreTransforms.boldFraktur},
+ {id:"boldScript",name:"Lanternspell Bold Script",family:"mathematical",role:"ritual / ornate invitation",fav:true,fn:coreTransforms.boldScript},
+ {id:"script",name:"Lacepath Script",family:"mathematical",role:"dream-water / delicate register",fav:true,fn:coreTransforms.script},
+ {id:"double",name:"GlassTheorem Double-Struck",family:"mathematical",role:"concept / theorem / dream logic",fav:true,fn:coreTransforms.double},
+ {id:"mathBold",name:"Math Bold",family:"mathematical",role:"heavy clean emphasis",fav:true,fn:coreTransforms.mathBold},
+ {id:"sansReg",name:"Sans Regular",family:"mathematical",role:"quiet technical body",fav:true,fn:coreTransforms.sansReg},
+ {id:"sansBold",name:"Sans Bold",family:"mathematical",role:"clean system notice",fav:true,fn:coreTransforms.sansBold},
+ {id:"sansItalic",name:"Sans Italic",family:"mathematical",role:"slanted machine note",fav:false,fn:coreTransforms.sansItalic},
+ {id:"sansBoldItalic",name:"Sans Bold Italic",family:"mathematical",role:"fast signal / emphasis",fav:true,fn:coreTransforms.sansBoldItalic},
+ {id:"mono",name:"MonoTerminal",family:"mathematical",role:"machinery / commands",fav:true,fn:coreTransforms.mono},
+ {id:"fullwidth",name:"VaporDoor Fullwidth",family:"width",role:"dream menu / portal UI",fav:true,fn:coreTransforms.fullwidth},
+ {id:"small",name:"PocketPlaque Smallcaps",family:"small caps",role:"labels / system whispers",fav:true,fn:coreTransforms.small},
+ {id:"moonvine",name:"Moonvine",family:"decorative substitution",role:"soft alien handwriting",fav:true,fn:coreTransforms.moonvine},
+ {id:"runeslab",name:"Runeslab",family:"decorative substitution",role:"carved interface",fav:true,fn:coreTransforms.runeslab},
+ {id:"greektech",name:"GreekTech",family:"decorative substitution",role:"retro console",fav:true,fn:coreTransforms.greektech},
+ {id:"blackedge",name:"Blackletter Edge",family:"decorative substitution",role:"metal artifact label",fav:true,fn:coreTransforms.blackedge},
+ {id:"fauxjp",name:"Faux JP Square",family:"decorative substitution",role:"arcade block glyph",fav:true,fn:coreTransforms.fauxjp},
+ {id:"runicleaf",name:"Runic Leaf",family:"decorative substitution",role:"forest-map label",fav:true,fn:coreTransforms.runicleaf},
+ {id:"fauxcyr",name:"Faux Cyrillic",family:"decorative substitution",role:"soft cyberfolk",fav:true,fn:coreTransforms.fauxcyr},
+ {id:"thai",name:"Thai Ember",family:"decorative substitution",role:"internet-fantasy register",fav:true,fn:coreTransforms.thai},
+ {id:"canada",name:"Canada Leaf",family:"decorative substitution",role:"blocky poster mode",fav:true,fn:coreTransforms.canada},
+ {id:"circled",name:"BubbleToken Circled",family:"enclosed",role:"badge / collectible token",fav:true,fn:coreTransforms.circled},
+ {id:"squared",name:"Squared Letters",family:"enclosed",role:"button grid",fav:true,fn:coreTransforms.squared},
+ {id:"negative",name:"Negative Squared",family:"enclosed",role:"arcade modal",fav:true,fn:coreTransforms.negative},
+ {id:"flags",name:"Regional Signal Flags",family:"enclosed",role:"banner / signal",fav:false,fn:coreTransforms.flags},
+ {id:"super",name:"Superscript Whisper",family:"vertical register",role:"margin voice",fav:true,fn:coreTransforms.super},
+ {id:"sub",name:"Subscript Rootnote",family:"vertical register",role:"underlayer / basement voice",fav:true,fn:coreTransforms.sub},
+ {id:"upside",name:"Upside Down",family:"orientation",role:"mirror-world state",fav:true,fn:coreTransforms.upside},
+ {id:"mirror",name:"Mirror Room",family:"orientation",role:"reflection / backwards archive",fav:true,fn:coreTransforms.mirror},
+ {id:"brackets",name:"Bracket Tiles",family:"wrapper",role:"inventory tokens",fav:true,fn:t=>everyChar(t,c=>"【"+c+"】")},
+ {id:"quotes",name:"Quote Tiles",family:"wrapper",role:"ritual token tiles",fav:true,fn:t=>everyChar(t,c=>"『"+c+"』")},
+ {id:"wave",name:"Wave Stitch",family:"wrapper",role:"waterline / signal shimmer",fav:true,fn:t=>everyChar(t,c=>"≋"+c+"≋")},
+ {id:"shade",name:"Shade Blocks",family:"wrapper",role:"pixel fog / retro sample",fav:true,fn:t=>everyChar(t,c=>"░"+c+"░")},
+ {id:"screen",name:"Screen Veil",family:"wrapper",role:"sealed specimen",fav:true,fn:t=>"【﻿"+fullwidth(t)+"】"},
+ {id:"underbar",name:"Underbar Blocks",family:"wrapper",role:"old-forum electric panel",fav:true,fn:t=>everyChar(t,c=>"[̲̅"+c+"]")},
+ {id:"starfield",name:"Starfield Overlay",family:"combining mark",role:"haunted ink / veil shimmer",fav:true,fn:t=>addCombining(t,"҉")},
+ {id:"strike",name:"Strikethrough",family:"combining mark",role:"crossed current",fav:true,fn:t=>addCombining(t,"̶")},
+ {id:"underline",name:"Underline Current",family:"combining mark",role:"floor-line signal",fav:false,fn:t=>addCombining(t,"̲")},
+ {id:"dots",name:"Dotted Aura",family:"combining mark",role:"granular whisper",fav:true,fn:t=>addCombining(t,"͎")},
+ {id:"tears",name:"Moon-Tear Surface",family:"combining mark",role:"rain under the letters",fav:true,fn:t=>addCombining(t,"̥̣")},
+ {id:"zalgoMist",name:"Zalgo Mist",family:"combining mark",role:"controlled reality fracture",fav:true,fn:t=>zalgo(t,2,"mist")},
+ {id:"zalgoDeep",name:"Zalgo Deepstorm",family:"combining mark",role:"high-noise corruption",fav:false,fn:t=>zalgo(t,7,"deepstorm")},
+ {id:"wing",name:"Wingdings Oracle",family:"symbol cipher",role:"oracle / puzzle layer",fav:true,fn:wingdings},
+ {id:"music",name:"Music Box Hybrid",family:"hybrid",role:"ornate generator output",fav:true,fn:musicBox},
+ {id:"ribbon",name:"Ribbon Cake",family:"hybrid",role:"Tumblr cake / sticker mode",fav:true,fn:ribbon},
+ {id:"ransom",name:"Ransom Circus",family:"hybrid",role:"generator-goblin showcase",fav:true,fn:t=>"💣☠  "+hybrid(t,"ransom-circus")+"  👻🐸"}
+];
+const byId=id=>styles.find(s=>s.id===id);
+
+const dividers=[
+ ["dream syntax","‧₊̣̥✧‧₊̣̥❰⟨⟪✧ segment::dream_syntax ✧⟫⟩❱₊̣̥✧‧₊̣̥"],
+ ["cat oversees","꧁𓃠꧂ 𝕔𝕒𝕥.𝕠𝕧𝕖𝕣𝕤𝕖𝕖𝕤 ꧁𓃠꧂"],
+ ["palindrome mirror","I ◇ 🔎 ◇ 🧩 ◇ 🪞 ◇ 🧩 ◇ 🔎 ◇ I"],
+ ["soft heart","༺♡༻ :･ﾟ✧:･ﾟ✧ ༺♡༻"],
+ ["glyph mycelium","𓆙✨ ⦓𝖘𝖍𝖆𝖙𝖙𝖊𝖗𝖊𝖉 𝖌𝖑𝖞𝖕𝖍-𝖒𝖞𝖈𝖊𝖑𝖎𝖚𝖒⦔ ✨𓆙"],
+ ["cat seam","✧❖✧ =^._.^=ﾉ彡 ✧❖✧"],
+ ["nine crystals","꧁⟡⟡⟡⟡⟡⟡⟡⟡⟡꧂"],
+ ["black header","༺🖤 header 🖤༻"],
+ ["eyes","👁️꧁꧂ 𝒘𝒆 𝒍𝒊𝒌𝒆 𝒕𝒉𝒂𝒕 𝒚𝒐𝒖 𝒍𝒊𝒌𝒆 𝒕𝒉𝒊𝒔 👁️꧁꧂"],
+ ["tiny door","◇◆◇"],
+ ["star gate","╚»★«╝"],
+ ["flower gate","◦•●◉✿ ✿◉●•◦"],
+ ["music seam","¸¸♬·¯·♩¸¸♪·¯·♫¸¸   ¸¸♫·¯·♪¸¸♩·¯·♬¸¸"],
+ ["retro seam","¸,ø¤º°`°º¤ø,¸   ¸,ø¤º°`°º¤ø,¸"],
+ ["signal bars","▁ ▂ ▄ ▅ ▆ ▇ █   █ ▇ ▆ ▅ ▄ ▂ ▁"],
+ ["boxed cat","⟐⟦ (=^･ω･^=)ﾉﾞ📦✨ ⟧⟐"],
+ ["liminal eyes","𓇼☾ ꙰ ꧁꧂👁️   👁️꧁꧂ ꙰ ☽𓇼"]
+];
+const builderFamilies=[
+ ["dream terminal","⟨⟪✧ "," ✧⟫⟩"],
+ ["nested dream","‧₊̣̥✧‧₊̣̥❰⟨⟪✧ "," ✧⟫⟩❱₊̣̥✧‧₊̣̥"],
+ ["cat box","⟐⟦ (=^･ω･^=)ﾉﾞ "," (=^･ω･^=)ﾉﾞ ⟧⟐"],
+ ["crystal","꧁⟡ "," ⟡꧂"],
+ ["black ribbon","༺🖤 "," 🖤༻"],
+ ["eye gate","꧁꧂👁️ "," 👁️꧁꧂"],
+ ["snake star","𓆙✨ ⦓","⦔ ✨𓆙"],
+ ["soft heart","༺♡༻ :･ﾟ✧ "," ✧:･ﾟ ༺♡༻"],
+ ["ASCII star","╚»★«╝ "," ╚»★«╝"]
+];
+
+window.VeilScriptAdapters={ghostHex:null,zalgoCipher:null,overlayCipher:null,emojiCipher:null,stegWeb:null};
+
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const toast=msg=>{const t=$("#toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1100)};
+async function copy(text){try{await navigator.clipboard.writeText(text);toast("copied ✧")}catch{const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();toast("copied ✧")}}
+function opt(style){return `<option value="${style.id}">${style.name}</option>`}
+function loadFavs(){try{return JSON.parse(localStorage.getItem("veilFavs")||"null")}catch{return null}}
+let persistedFavs=loadFavs();
+if(persistedFavs) styles.forEach(s=>s.fav=!!persistedFavs[s.id]);
+function saveFavs(){localStorage.setItem("veilFavs",JSON.stringify(Object.fromEntries(styles.map(s=>[s.id,s.fav]))))}
+
+const familySet=[...new Set(styles.map(s=>s.family))];
+$("#categoryFilter").innerHTML='<option value="all">all families</option>'+familySet.map(f=>`<option>${f}</option>`).join("");
+["singleStyle","overlayBase","mixA","mixB","mixC","mixD"].forEach(id=>$("#"+id).innerHTML=styles.filter(s=>!["wrapper","combining mark","hybrid","symbol cipher"].includes(s.family)).map(opt).join(""));
+$("#singleStyle").value="house"; $("#overlayBase").value="house";
+$("#mixA").value="boldFraktur";$("#mixB").value="mono";$("#mixC").value="script";$("#mixD").value="double";
+$("#dividerBuilder").innerHTML=builderFamilies.map((x,i)=>`<option value="${i}">${x[0]}</option>`).join("");
+
+function renderAll(){
+ const text=$("#masterInput").value, fam=$("#categoryFilter").value, q=$("#styleSearch").value.toLowerCase(), favOnly=$("#favOnly").checked;
+ const visible=styles.filter(s=>(fam==="all"||s.family===fam)&&(!q||s.name.toLowerCase().includes(q)||s.role.toLowerCase().includes(q))&&(!favOnly||s.fav));
+ $("#allOutputs").innerHTML=visible.map(s=>`<div class="out-card" data-id="${s.id}">
+   <div class="out-head"><div><span class="out-title">${s.name}</span> <span class="small">· ${s.family}</span></div>
+   <div class="out-actions"><button class="iconbtn fav ${s.fav?"fav":""}" data-fav="${s.id}" title="favorite">${s.fav?"★":"☆"}</button><button class="iconbtn" data-copy="${s.id}">copy</button></div></div>
+   <div class="out-text">${escapeHtml(s.fn(text))}</div></div>`).join("");
+ $$("[data-copy]").forEach(b=>b.onclick=()=>copy(byId(b.dataset.copy).fn(text)));
+ $$("[data-fav]").forEach(b=>b.onclick=()=>{let s=byId(b.dataset.fav);s.fav=!s.fav;saveFavs();renderAll()});
+}
+function escapeHtml(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+function updateSingle(){
+ const s=byId($("#singleStyle").value), out=s.fn($("#singleInput").value);
+ $("#singleOutput").textContent=out; $("#singleMeta").textContent=`${s.family} · ${s.role}`;
+}
+function routedMix(text,ids,rule,seed){
+ const fs=ids.map(id=>byId(id).fn), chars=Array.from(text); let letter=0, word=-1, inWord=false;
+ return chars.map((c,i)=>{
+   if(!/[A-Za-z]/.test(c)){if(/\s/.test(c))inWord=false; return c}
+   if(!inWord){word++;inWord=true}
+   let idx=0;
+   if(rule==="letters") idx=letter%fs.length;
+   if(rule==="words") idx=word%fs.length;
+   if(rule==="vowels") idx=/[aeiou]/i.test(c)?0:1%fs.length;
+   if(rule==="initials") idx=(letter===0||chars[i-1]?.match(/\s/))?0:1%fs.length;
+   if(rule==="seeded") idx=seededChoice(seed,i,fs.length);
+   letter++; return fs[idx](c);
+ }).join("")
+}
+function updateMix(){let ids=[$("#mixA").value,$("#mixB").value,$("#mixC").value,$("#mixD").value];$("#mixOutput").textContent=routedMix($("#mixInput").value,ids,$("#mixRule").value,$("#mixSeed").value)}
+function applyOverlayPipeline(){
+ let t=byId($("#overlayBase").value).fn($("#overlayInput").value);
+ const on=$$(".overlayCheck:checked").map(x=>x.value), intensity=+$("#zalgoIntensity").value;
+ if(on.includes("starfield"))t=addCombining(t,"҉");
+ if(on.includes("strike"))t=addCombining(t,"̶");
+ if(on.includes("underline"))t=addCombining(t,"̲");
+ if(on.includes("dots"))t=addCombining(t,"͎");
+ if(on.includes("tears"))t=addCombining(t,"̥̣");
+ if(on.includes("zalgo"))t=zalgo(t,intensity,"overlay-lab");
+ $("#overlayOutput").textContent=t;
+}
+function renderDividers(){
+ $("#dividerList").innerHTML=dividers.map(([name,text],i)=>`<div class="divider-card"><div class="out-head"><span class="out-title">${name}</span><button class="iconbtn" data-divcopy="${i}">copy</button></div><div class="divider-text">${escapeHtml(text)}</div></div>`).join("");
+ $$("[data-divcopy]").forEach(b=>b.onclick=()=>copy(dividers[+b.dataset.divcopy][1]));
+}
+function updateBuiltDivider(){let [n,l,r]=builderFamilies[+$("#dividerBuilder").value];$("#builtDivider").textContent=l+$("#dividerCenter").value+r}
+
+$("#tabs").onclick=e=>{let b=e.target.closest(".tab");if(!b)return;$$(".tab").forEach(x=>x.classList.toggle("active",x===b));$$(".pane").forEach(p=>p.classList.toggle("active",p.id===b.dataset.tab));localStorage.setItem("veilTab",b.dataset.tab)}
+["masterInput","categoryFilter","styleSearch","favOnly"].forEach(id=>$("#"+id).addEventListener("input",renderAll));
+["singleStyle","singleInput"].forEach(id=>$("#"+id).addEventListener("input",updateSingle));
+["mixInput","mixA","mixB","mixC","mixD","mixRule","mixSeed"].forEach(id=>$("#"+id).addEventListener("input",updateMix));
+["overlayInput","overlayBase","zalgoIntensity"].forEach(id=>$("#"+id).addEventListener("input",()=>{$("#intensityRead").textContent=$("#zalgoIntensity").value;applyOverlayPipeline()}));
+$$(".overlayCheck").forEach(x=>x.addEventListener("change",applyOverlayPipeline));
+["dividerCenter","dividerBuilder"].forEach(id=>$("#"+id).addEventListener("input",updateBuiltDivider));
+
+$("#copySingle").onclick=()=>copy($("#singleOutput").textContent);
+$("#sendToAll").onclick=()=>{$("#masterInput").value=$("#singleInput").value;renderAll();document.querySelector('[data-tab="all"]').click()};
+$("#copyMix").onclick=()=>copy($("#mixOutput").textContent);
+$("#copyOverlay").onclick=()=>copy($("#overlayOutput").textContent);
+$("#copyBuiltDivider").onclick=()=>copy($("#builtDivider").textContent);
+$("#housePreset").onclick=()=>{$("#mixA").value="boldFraktur";$("#mixB").value="mono";$("#mixC").value="script";$("#mixD").value="double";$("#mixRule").value="seeded";$("#mixSeed").value="amethyst-mycelium";updateMix()};
+$("#copyAll").onclick=()=>{
+ const text=$("#masterInput").value,fam=$("#categoryFilter").value,q=$("#styleSearch").value.toLowerCase(),favOnly=$("#favOnly").checked;
+ const v=styles.filter(s=>(fam==="all"||s.family===fam)&&(!q||s.name.toLowerCase().includes(q)||s.role.toLowerCase().includes(q))&&(!favOnly||s.fav));
+ copy(v.map(s=>`${s.name}\n${s.fn(text)}`).join("\n\n"));
+};
+
+const savedText=localStorage.getItem("veilText"); if(savedText)$("#masterInput").value=savedText;
+$("#masterInput").addEventListener("input",()=>localStorage.setItem("veilText",$("#masterInput").value));
+renderAll();updateSingle();updateMix();applyOverlayPipeline();renderDividers();updateBuiltDivider();
+$("#houseHero").textContent=houseMix("Amethyst · glyph-mycelium · dream machine");
+const savedTab=localStorage.getItem("veilTab"); if(savedTab&&document.querySelector(`[data-tab="${savedTab}"]`))document.querySelector(`[data-tab="${savedTab}"]`).click();
+})();
+</script>
+</body>
+</html>

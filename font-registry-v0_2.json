@@ -1,0 +1,367 @@
+{
+  "project": "veil-script",
+  "version": "0.2",
+  "module": "extended_font_catalog",
+  "status": "working_spec",
+  "audience": [
+    "Lily",
+    "assistant",
+    "Codex"
+  ],
+  "principle": "Glyphs, font registers, wrappers, combining marks, and symbolic alphabets are design material for encoders, decoders, and behavior specs.",
+  "entries": [
+    {
+      "id": "archivefang_fraktur",
+      "display": "𝔄𝔯𝔠𝔥𝔦𝔳𝔢𝔣𝔞𝔫𝔤",
+      "sample": "𝔢𝔵𝔞𝔪𝔭𝔩𝔢𝔰 𝔬𝔣 𝔢𝔳𝔢𝔫 𝔪𝔬𝔯𝔢 𝔣𝔬𝔫𝔱𝔰 𝔱𝔬 𝔠𝔥𝔬𝔬𝔰𝔢 𝔣𝔯𝔬𝔪",
+      "family": "standard_mathematical",
+      "transform": "latin letters -> mathematical fraktur",
+      "role": "archive, daemon register, old-machine tone",
+      "decoder": "map mathematical fraktur codepoints back to plain Latin"
+    },
+    {
+      "id": "cathedralwolf_bold_fraktur",
+      "display": "𝕮𝖆𝖙𝖍𝖊𝖉𝖗𝖆𝖑𝖜𝖔𝖑𝖋",
+      "sample": "𝖊𝖝𝖆𝖒𝖕𝖑𝖊𝖘 𝖔𝖋 𝖊𝖛𝖊𝖓 𝖒𝖔𝖗𝖊 𝖋𝖔𝖓𝖙𝖘 𝖙𝖔 𝖈𝖍𝖔𝖔𝖘𝖊 𝖋𝖗𝖔𝖒",
+      "family": "standard_mathematical",
+      "transform": "latin letters -> mathematical bold fraktur",
+      "role": "decree, heavy daemon, battle-label",
+      "decoder": "map bold fraktur codepoints back to plain Latin"
+    },
+    {
+      "id": "ransom_circus",
+      "display": "💣☠  ᖇ𝐚𝗇𝖽𝐨𝗆 𝕮𝐢𝗋𝖼𝐮𝗌  👻🐸",
+      "sample": "💣☠  Ẹχ𝓪ⓜℙ𝐋ⓔ𝕤 ᗝ千 𝐄𝐯乇ภ ϻ𝔬Ｒ𝕖 ғᗝภᵗŞ ｔØ ｃⒽ𝓸𝔬ᔕ€ Ŧ𝐫ｏϻ  👻🐸",
+      "family": "hybrid_generator",
+      "transform": "per-character random substitution across math, circled, fullwidth, faux-CJK, Greek, small caps, symbols, and emoji wrappers",
+      "role": "chaotic showcase, maximal sample mode, generator-goblin",
+      "decoder": "requires lookup table per chosen substitute, plus wrapper stripping"
+    },
+    {
+      "id": "lanternspell_bold_script",
+      "display": "𝓛𝓪𝓷𝓽𝓮𝓻𝓷𝓼𝓹𝓮𝓵𝓵",
+      "sample": "𝓮𝔁𝓪𝓶𝓹𝓵𝓮𝓼 𝓸𝓯 𝓮𝓿𝓮𝓷 𝓶𝓸𝓻𝓮 𝓯𝓸𝓷𝓽𝓼 𝓽𝓸 𝓬𝓱𝓸𝓸𝓼𝓮 𝓯𝓻𝓸𝓶",
+      "family": "standard_mathematical",
+      "transform": "latin letters -> mathematical bold script with fallback for unavailable glyphs",
+      "role": "ritual, soft threshold, ornate invitation",
+      "decoder": "map bold script codepoints and fallback fraktur glyphs back to Latin"
+    },
+    {
+      "id": "lacepath_script",
+      "display": "𝓛𝓪𝓬𝓮𝓹𝓪𝓽𝓱",
+      "sample": "𝑒𝓍𝒶𝓂𝓅𝓁𝑒𝓈 𝑜𝒻 𝑒𝓋𝑒𝓃 𝓂𝑜𝓇𝑒 𝒻𝑜𝓃𝓉𝓈 𝓉𝑜 𝒸𝒽𝑜𝑜𝓈𝑒 𝒻𝓇𝑜𝓂",
+      "family": "standard_mathematical",
+      "transform": "latin letters -> mathematical script with fallback glyphs",
+      "role": "soft aside, intimate thread, delicate register",
+      "decoder": "map script codepoints and fallback glyphs back to Latin"
+    },
+    {
+      "id": "glasstheorem_double_struck",
+      "display": "𝔾𝕝𝕒𝕤𝕤𝕋𝕙𝕖𝕠𝕣𝕖𝕞",
+      "sample": "𝕖𝕩𝕒𝕞𝕡𝕝𝕖𝕤 𝕠𝕗 𝕖𝕧𝕖𝕟 𝕞𝕠𝕣𝕖 𝕗𝕠𝕟𝕥𝕤 𝕥𝕠 𝕔𝕙𝕠𝕠𝕤𝕖 𝕗𝕣𝕠𝕞",
+      "family": "standard_mathematical",
+      "transform": "latin letters -> mathematical double-struck",
+      "role": "concept, theorem, named object",
+      "decoder": "map double-struck codepoints back to Latin"
+    },
+    {
+      "id": "vapordoor_fullwidth",
+      "display": "ＶａｐｏｒＤｏｏｒ",
+      "sample": "ｅｘａｍｐｌｅｓ ｏｆ ｅｖｅｎ ｍｏｒｅ ｆｏｎｔｓ ｔｏ ｃｈｏｏｓｅ ｆｒｏｍ",
+      "family": "width_transform",
+      "transform": "latin letters and spaces -> fullwidth characters and ideographic spacing",
+      "role": "dream menu, spacing, portal UI",
+      "decoder": "Unicode NFKC normalization plus spacing cleanup"
+    },
+    {
+      "id": "moonvine_myanmarish",
+      "display": "ꪑꪮꪮꪀꪜꪱꪀꫀ",
+      "sample": "ꫀ᥊ꪖꪑρꪶꫀᦓ ꪮᠻ ꫀꪜꫀꪀ ꪑꪮ᥅ꫀ ᠻꪮꪀꪻᦓ ꪻꪮ ᥴꫝꪮꪮᦓꫀ ᠻ᥅ꪮꪑ",
+      "family": "decorative_substitution",
+      "transform": "latin letters -> lookalike ornamental glyphs from multiple scripts",
+      "role": "moon-blog, soft alien handwriting",
+      "decoder": "custom substitution table only"
+    },
+    {
+      "id": "coral_asemic",
+      "display": "⋆ᨒ𓂅﹆ꔛ﹅⋆",
+      "sample": "⋆ᨒ𓂅﹆ꔛ﹅⋆𓍼 ꕤ⌕ ⋆⌗⋆ଘ ﹆ꕤǂ⋆ ⌕ꕤଘᯅ𓍼 ᯅꕤ ✧⋈ꕤꕤ𓍼⋆ ⌕ǂꕤ﹆",
+      "family": "asemic_symbolic",
+      "transform": "words -> glyph clusters, not letter-preserving",
+      "role": "secret garden, nonverbal layer, mood-field",
+      "decoder": "requires token-level dictionary, not character map"
+    },
+    {
+      "id": "runeslab",
+      "display": "ꋪꀎꈤꍟꌗ꒒ꍏꌃ",
+      "sample": "ꍟꊼꍏꂵꉣ꒒ꍟꌗ ꂦꎇ ꍟꃴꍟꈤ ꂵꂦꋪꍟ ꎇꂦꈤ꓄ꌗ ꓄ꂦ ꉓꃅꂦꂦꌗꍟ ꎇꋪꂦꂵ",
+      "family": "decorative_substitution",
+      "transform": "latin letters -> angular lookalike glyphs",
+      "role": "stone tablet, RPG skill tree, carved interface",
+      "decoder": "custom substitution table"
+    },
+    {
+      "id": "ribbon_cake",
+      "display": "° 🎀 𝓡𝓲𝓫𝓫𝓸𝓷 𝓒𝓪𝓴𝓮 🎀 °",
+      "sample": "°  🎀  𝑒𝓍𝒶𝓂𝓅𝓁𝑒𝓈 ❤𝒻 𝑒𝓋𝑒𝓃 𝓂😍𝓇𝑒 𝒻🍩𝓃𝓉𝓈 𝓉💙 𝒸𝒽💍♡𝓈𝑒 𝒻𝓇🌸𝓂  🎀  °",
+      "family": "emoji_infix_wrapper",
+      "transform": "script base plus emoji substitutions and ribbon wrappers",
+      "role": "Tumblr cake, celebratory sticker mode",
+      "decoder": "strip wrappers and emoji infixes, then decode script glyphs"
+    },
+    {
+      "id": "pocketplaque_smallcaps",
+      "display": "ᴘᴏᴄᴋᴇᴛᴘʟᴀǫᴜᴇ",
+      "sample": "ᴇxᴀᴍᴘʟᴇꜱ ᴏꜰ ᴇᴠᴇɴ ᴍᴏʀᴇ ꜰᴏɴᴛꜱ ᴛᴏ ᴄʜᴏᴏꜱᴇ ꜰʀᴏᴍ",
+      "family": "small_caps",
+      "transform": "letters -> small-cap lookalikes where available",
+      "role": "label, compact plaque, low-volume status",
+      "decoder": "custom table because small caps are scattered"
+    },
+    {
+      "id": "upside_down",
+      "display": "uʍop ǝpᴉsd∩",
+      "sample": "ɯoɹɟ ǝsooɥɔ oʇ sʇuoɟ ǝɹoɯ uǝʌǝ ɟo sǝldɯɐxǝ",
+      "family": "orientation_transform",
+      "transform": "reverse string order and map chars to upside-down lookalikes",
+      "role": "inversion, mirror-room, playful reversal",
+      "decoder": "reverse string and map lookalikes back"
+    },
+    {
+      "id": "combining_box",
+      "display": "e⃣x⃣a⃣m⃣p⃣l⃣e⃣",
+      "sample": "e⃣   x⃣   a⃣   m⃣   p⃣   l⃣   e⃣   s⃣    o⃣   f⃣    e⃣   v⃣   e⃣   n⃣",
+      "family": "combining_mark",
+      "transform": "letter + combining enclosing keycap / box mark plus spacing",
+      "role": "token tiles, UI inventory, clickable letters",
+      "decoder": "strip combining marks and normalize spacing"
+    },
+    {
+      "id": "regional_flags",
+      "display": "🇫​​🇱​​🇦​​🇬​",
+      "sample": "​🇪​​🇽​​🇦​​🇲​​🇵​​🇱​​🇪​​🇸​ ​🇴​​🇫​ ​🇪​​🇻​​🇪​​🇳​ ​🇲​​🇴​​🇷​​🇪​ ​🇫​​🇴​​🇳​​🇹​​🇸​",
+      "family": "regional_indicator",
+      "transform": "A-Z letters -> regional indicator symbols",
+      "role": "banner, signal flags, parade mode",
+      "decoder": "map regional indicator symbols back to A-Z"
+    },
+    {
+      "id": "boxed_negative",
+      "display": "🅱🅾🆇🅴🅳",
+      "sample": "🅴🆇🅰🅼🅿🅻🅴🆂 🅾🅵 🅴🆅🅴🅽 🅼🅾🆁🅴 🅵🅾🅽🆃🆂 🆃🅾 🅲🅷🅾🅾🆂🅴 🅵🆁🅾🅼",
+      "family": "enclosed_alphanumeric",
+      "transform": "letters -> negative squared Latin capitals",
+      "role": "button-grid, arcade UI, modal label",
+      "decoder": "map enclosed alphanumeric codepoints back to Latin"
+    },
+    {
+      "id": "mirror_room",
+      "display": "miɿɿoɿ",
+      "sample": "moɿᎸ ɘꙅooʜɔ oƚ ꙅƚᴎoᎸ ɘɿom ᴎɘvɘ Ꮈo ꙅɘ|qmɒxɘ",
+      "family": "orientation_transform",
+      "transform": "reverse string order and map chars to mirrored lookalikes",
+      "role": "reflection, backwards archive, puzzle layer",
+      "decoder": "reverse string and apply mirror lookup"
+    },
+    {
+      "id": "zalgo_deepstorm",
+      "display": "Z̷a̴l̵g̶o̸ 𝐃𝐞𝐞𝗉𝐬𝗍𝐨𝗋𝐦",
+      "sample": "ẻ̴͇̜͕̘x̷̫͎̩͂̀̌̾̿ͅa̴͔̘͊̅͂͛͜m̷̖̪͇̥̼̝͓̝̝͂̍̐̍̾͋̉͌p̵͍̄̋̋͑͐͗̆͛͝l̷͕̬͓̏͗̐͋̇͗͛̃͌͘ḙ̷̲̇̐̅̉̂͑̕s̵̟̣̗̜̞͓̯̘͂̔̌̓͌̎͑͆͘͠",
+      "family": "combining_mark",
+      "transform": "base letters plus many combining marks above/below",
+      "role": "storm, corruption field, high-noise demonstration",
+      "decoder": "strip combining marks to recover base text"
+    },
+    {
+      "id": "subscript_rootnote",
+      "display": "ᵣₒₒₜₙₒₜₑ",
+      "sample": "ₑₓₐₘₚₗₑₛ ₒf ₑᵥₑₙ ₘₒᵣₑ fₒₙₜₛ ₜₒ cₕₒₒₛₑ fᵣₒₘ",
+      "family": "subscript_superscript",
+      "transform": "letters -> subscript or fallback where available",
+      "role": "underlayer, root note, basement voice",
+      "decoder": "custom table, incomplete alphabet handled by fallbacks"
+    },
+    {
+      "id": "superscript_whisper",
+      "display": "ʷʰⁱˢᵖᵉʳ",
+      "sample": "ᵉˣᵃᵐᵖˡᵉˢ ᵒᶠ ᵉᵛᵉⁿ ᵐᵒʳᵉ ᶠᵒⁿᵗˢ ᵗᵒ ᶜʰᵒᵒˢᵉ ᶠʳᵒᵐ",
+      "family": "subscript_superscript",
+      "transform": "letters -> superscript or modifier-letter lookalikes",
+      "role": "whisper, margin note, overlayer",
+      "decoder": "custom table, incomplete alphabet handled by fallbacks"
+    },
+    {
+      "id": "bubbletoken_circled",
+      "display": "ⒷⓤⓑⓑⓛⓔⓉⓞⓚⓔⓝ",
+      "sample": "ⓔⓧⓐⓜⓟⓛⓔⓢ ⓞⓕ ⓔⓥⓔⓝ ⓜⓞⓡⓔ ⓕⓞⓝⓣⓢ ⓣⓞ ⓒⓗⓞⓞⓢⓔ ⓕⓡⓞⓜ",
+      "family": "enclosed_alphanumeric",
+      "transform": "letters -> circled alphanumeric",
+      "role": "badge, collectible token, soft UI",
+      "decoder": "map circled codepoints back to Latin"
+    },
+    {
+      "id": "thai_ember",
+      "display": "Շђคเ є๓๒єг",
+      "sample": "єאค๓קɭєร ๏Ŧ єשєภ ๓๏гє Ŧ๏ภՇร Շ๏ ςђ๏๏รє Ŧг๏๓",
+      "family": "decorative_substitution",
+      "transform": "latin letters -> Thai/Greek/Cyrillic-ish lookalikes",
+      "role": "ember script, internet-fantasy register",
+      "decoder": "custom substitution table"
+    },
+    {
+      "id": "faux_cyrillic",
+      "display": "Ғαυx Ϲүяιℓℓιϲ",
+      "sample": "ҽxαɱρʅҽʂ σϝ ҽʋҽɳ ɱσɾҽ ϝσɳƚʂ ƚσ ƈԋσσʂҽ ϝɾσɱ",
+      "family": "decorative_substitution",
+      "transform": "latin letters -> faux-Cyrillic/Greek/IPA lookalikes",
+      "role": "glitch notebook, soft cyberfolk",
+      "decoder": "custom substitution table"
+    },
+    {
+      "id": "runic_leaf",
+      "display": "ᏒᏬᏁᎥᏣ ᏝᏋᏗᎦ",
+      "sample": "ᏋጀᏗᎷᎮᏝᏋᏕ ᎧᎦ ᏋᏉᏋᏁ ᎷᎧᏒᏋ ᎦᎧᏁᏖᏕ ᏖᎧ ፈᏂᎧᎧᏕᏋ ᎦᏒᎧᎷ",
+      "family": "decorative_substitution",
+      "transform": "latin letters -> Cherokee/Ethiopic-like decorative substitutes",
+      "role": "forest rune, fantasy-map label",
+      "decoder": "custom substitution table"
+    },
+    {
+      "id": "greektech",
+      "display": "ΣᄂΣᄃƬЯӨ",
+      "sample": "ΣXΛMPᄂΣƧ ӨF ΣVΣП MӨЯΣ FӨПƬƧ ƬӨ ᄃΉӨӨƧΣ FЯӨM",
+      "family": "decorative_substitution",
+      "transform": "latin letters -> Greek/Cyrillic/Hangul lookalikes",
+      "role": "retro console, sci-fi title, neon interface",
+      "decoder": "custom substitution table"
+    },
+    {
+      "id": "blackletter_edge",
+      "display": "ɆĐ₲Ɇ ₵ØĐɆ",
+      "sample": "ɆӾ₳₥₱ⱠɆ₴ Ø₣ ɆVɆ₦ ₥ØⱤɆ ₣Ø₦₮₴ ₮Ø ₵ⱧØØ₴Ɇ ₣ⱤØ₥",
+      "family": "decorative_substitution",
+      "transform": "latin letters -> stroked/currency/gothic lookalikes",
+      "role": "metal UI, artifact label, hard-edged emphasis",
+      "decoder": "custom substitution table"
+    },
+    {
+      "id": "faux_jp_square",
+      "display": "乇乂卂爪",
+      "sample": "乇乂卂爪卩ㄥ乇丂 ㄖ千 乇ᐯ乇几 爪ㄖ尺乇 千ㄖ几ㄒ丂 ㄒㄖ 匚卄ㄖㄖ丂乇 千尺ㄖ爪",
+      "family": "decorative_substitution",
+      "transform": "latin letters -> CJK/Katakana/Bopomofo-ish lookalikes",
+      "role": "arcade title, block glyph mode",
+      "decoder": "custom substitution table"
+    },
+    {
+      "id": "bracket_tiles_square",
+      "display": "【Ｂｒａｃｋｅｔ　Ｔｉｌｅｓ】",
+      "sample": "【e】【x】【a】【m】【p】【l】【e】【s】 【o】【f】 【e】【v】【e】【n】 【m】【o】【r】【e】",
+      "family": "wrapper",
+      "transform": "wrap each character in corner brackets",
+      "role": "inventory tile, hard tokenization, Codex specimen",
+      "decoder": "strip bracket wrappers"
+    },
+    {
+      "id": "wave_stitch",
+      "display": "≋w≋a≋v≋e≋",
+      "sample": "≋e≋x≋a≋m≋p≋l≋e≋s≋ ≋o≋f≋ ≋e≋v≋e≋n≋ ≋m≋o≋r≋e≋",
+      "family": "wrapper",
+      "transform": "prefix each character with wave marker",
+      "role": "waterline, continuity marker, signal shimmer",
+      "decoder": "remove wave markers"
+    },
+    {
+      "id": "shade_blocks",
+      "display": "░s░h░a░d░e░",
+      "sample": "░e░x░a░m░p░l░e░s░ ░o░f░ ░e░v░e░n░ ░m░o░r░e░",
+      "family": "wrapper",
+      "transform": "interleave shade blocks with characters",
+      "role": "pixel fog, retro sample card",
+      "decoder": "remove shade block characters"
+    },
+    {
+      "id": "kaomoji_heart_wrap",
+      "display": "(っ◔◡◔)っ ♥",
+      "sample": "(っ◔◡◔)っ ♥ examples of even more fonts to choose from ♥",
+      "family": "wrapper",
+      "transform": "plain text wrapped in kaomoji and heart delimiters",
+      "role": "gift mode, affectionate handoff, friendly package",
+      "decoder": "strip wrapper phrases and preserve inner text"
+    },
+    {
+      "id": "screen_veil",
+      "display": "【﻿ｖｅｉｌ】",
+      "sample": "【﻿ｅｘａｍｐｌｅｓ　ｏｆ　ｅｖｅｎ　ｍｏｒｅ　ｆｏｎｔｓ　ｔｏ　ｃｈｏｏｓｅ　ｆｒｏｍ】",
+      "family": "wrapper_width_transform",
+      "transform": "fullwidth text wrapped in ornate brackets with possible hidden separator",
+      "role": "glass panel, modal window, sealed specimen",
+      "decoder": "strip brackets, normalize fullwidth to Latin, remove hidden marks if present"
+    },
+    {
+      "id": "underbar_blocks",
+      "display": "[̲̅u][̲̅n][̲̅d][̲̅e][̲̅r]",
+      "sample": "[̲̅e][̲̅x][̲̅a][̲̅m][̲̅p][̲̅l][̲̅e][̲̅s] [̲̅o][̲̅f]",
+      "family": "combining_wrapper",
+      "transform": "each character wrapped with bracket plus combining overline/underline",
+      "role": "electric panel, old forum badge",
+      "decoder": "strip wrappers and combining marks"
+    },
+    {
+      "id": "starfield_overlay",
+      "display": "s҉t҉a҉r҉f҉i҉e҉l҉d҉",
+      "sample": "e҉x҉a҉m҉p҉l҉e҉s҉ ҉o҉f҉ ҉e҉v҉e҉n҉ ҉m҉o҉r҉e҉",
+      "family": "combining_mark",
+      "transform": "letter + combining Cyrillic millions sign overlay",
+      "role": "static aura, haunted ink, veil shimmer",
+      "decoder": "strip combining overlay"
+    },
+    {
+      "id": "canada_leaf",
+      "display": "ᑕᗩᑎᗩᗪᗩ ᒪEᗩᖴ",
+      "sample": "E᙭ᗩᗰᑭᒪEᔕ Oᖴ EᐯEᑎ ᗰOᖇE ᖴOᑎTᔕ TO ᑕᕼOOᔕE ᖴᖇOᗰ",
+      "family": "decorative_substitution",
+      "transform": "latin letters -> Canadian Aboriginal syllabics lookalikes plus uppercase Latin",
+      "role": "blocky cheerful title, poster mode",
+      "decoder": "custom substitution table"
+    },
+    {
+      "id": "strikethrough",
+      "display": "s̶t̶r̶i̶k̶e̶",
+      "sample": "e̶x̶a̶m̶p̶l̶e̶s̶ ̶o̶f̶ ̶e̶v̶e̶n̶ ̶m̶o̶r̶e̶",
+      "family": "combining_mark",
+      "transform": "letter + combining long stroke overlay",
+      "role": "redaction, negation, crossed-current",
+      "decoder": "strip combining stroke"
+    },
+    {
+      "id": "wingdings_oracle",
+      "display": "Wingdings Oracle",
+      "sample": "♏︎⌧︎♋︎❍︎◻︎●︎♏︎⬧︎ □︎♐︎ ♏︎❖︎♏︎■︎ ❍︎□︎❒︎♏︎ ♐︎□︎■︎⧫︎⬧︎",
+      "family": "symbol_cipher",
+      "transform": "letters -> symbol-font correspondence",
+      "role": "oracle cipher, puzzle, non-Latin symbolic layer",
+      "decoder": "font-specific lookup table, not Unicode normalization"
+    },
+    {
+      "id": "music_box_wrapper",
+      "display": "¸¸♬·¯·♩¸¸♪",
+      "sample": "¸¸♬·¯·♩¸¸♪·¯·♫¸¸ Ẹ𝓧α๓קＬ𝔢Ｓ σғ є𝕧乇几 𝕄𝓞ŕ𝕖 𝒇Ø𝐧t𝕊 𝓽ό 𝓬𝔥σ𝐨𝕊ᗴ ғŕσ𝐌 ¸¸♫·¯·♪¸¸♩·¯·♬¸¸",
+      "family": "hybrid_generator_wrapper",
+      "transform": "random mixed alphabet plus decorative music delimiters",
+      "role": "music-box title card, ornate generator output",
+      "decoder": "strip wrappers, then run hybrid lookup"
+    }
+  ],
+  "families": {
+    "standard_mathematical": "Unicode mathematical alphabets with direct alphabetic mapping.",
+    "decorative_substitution": "Custom lookalike tables mixing symbols and scripts.",
+    "hybrid_generator": "Random or semi-random per-character style mixes.",
+    "wrapper": "Text surrounded or interleaved with visible delimiters.",
+    "combining_mark": "Base text modified with overlay, underline, strike, box, or storm marks.",
+    "orientation_transform": "Reversed, mirrored, or upside-down text.",
+    "enclosed_alphanumeric": "Circled, boxed, keycap, or squared symbols.",
+    "asemic_symbolic": "Glyph clusters that may map at word or token level rather than letter level.",
+    "symbol_cipher": "Nonalphabetic symbol-set mapping such as Wingdings-like modes."
+  }
+}
