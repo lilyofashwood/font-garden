@@ -114,6 +114,19 @@ const server = http.createServer((request, response) => {
     await page.setViewportSize({ width: 390, height: 844 });
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth));
     await page.screenshot({ path: path.join(root, 'test-artifacts/seams-mobile.png'), fullPage: true });
+    const trail = JSON.parse(fs.readFileSync(path.join(__dirname, 'trail.json'), 'utf8'));
+    for (const id of ['font-garden', 'ghost-hex', 'kagami-no-migaka']) {
+      await page.goto(origin + '/seams/#' + id);
+      await page.waitForSelector('body[data-seam-ready="true"]');
+      const packet = trail.find(packet => packet.id === id);
+      assert.equal(await page.textContent('#verse'), packet.verse, id + ' heavy marks remain exact');
+      assert.match(await page.locator('#verse').evaluate(element => getComputedStyle(element).fontFamily), /^STIXGeneral,/);
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth));
+      await page.locator('.specimen-frame').screenshot({ path: path.join(root, 'test-artifacts/seams-marked-' + id + '.png') });
+      await page.click('#unfold');
+      assert.equal(await page.isVisible('#recovered'), true);
+      assert.equal(await page.textContent('#verse'), packet.verse, id + ' survives explicit decode unchanged');
+    }
     assert.deepEqual(errors, []);
     assert.deepEqual(external, []);
     console.log('PASS seam loom: six layers, 78 registers, exact copying/download, malformed packets, inert HTML, authored trail, Unicode presentation, desktop/mobile, local-only requests');
