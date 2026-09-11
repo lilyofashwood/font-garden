@@ -19,7 +19,7 @@ const {pathToFileURL}=require('node:url');
   await page.locator('#gallery button').click();
   await page.waitForFunction(()=>window.__copied===document.querySelector('.specimen').textContent);
   await page.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw Error('blocked');}}}));
-  await page.locator('#gallery button').click();assert.match(await page.innerText('#status'),/selected/);
+  await page.locator('#gallery button').click();assert.match((await page.innerText('#status')).normalize('NFKC'),/selected/);
   await page.fill('#filter','');await page.waitForFunction(()=>document.querySelectorAll('#gallery article').length===78);
   await page.fill('#source','the archive grows its own stars');
   fs.mkdirSync(path.join(__dirname,'../test-artifacts'),{recursive:true});
