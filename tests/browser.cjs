@@ -9,6 +9,18 @@ const {pathToFileURL}=require('node:url');
   const page=await browser.newPage({viewport:{width:1365,height:950}}),errors=[],network=[];
   page.on('pageerror',e=>errors.push(String(e)));page.on('request',r=>{if(/^https?:/.test(r.url()))network.push(r.url());});
   await page.goto(pathToFileURL(path.join(__dirname,'../index.html')).href);
+  assert(!/[A-Za-z]/.test(await page.title()));
+  assert(!/[A-Za-z]/.test(await page.getAttribute('#filter','placeholder')));
+  assert.equal(await page.getAttribute('#filter','aria-placeholder'),'script, moon, machine…');
+  await page.evaluate(()=>document.querySelector('#filter').setAttribute('placeholder','Find another register'));
+  await page.waitForFunction(()=>!/[A-Za-z]/.test(document.querySelector('#filter').placeholder));
+  await page.evaluate(()=>{
+    const select=document.createElement('select'),option=document.createElement('option');
+    select.id='typography-value-probe';option.textContent='CaseSensitiveValue';select.append(option);document.body.append(select);
+  });
+  await page.waitForFunction(()=>!/[A-Za-z]/.test(document.querySelector('#typography-value-probe option').textContent));
+  assert.equal(await page.inputValue('#typography-value-probe'),'CaseSensitiveValue');
+  await page.evaluate(()=>document.querySelector('#typography-value-probe').remove());
   assert.equal(await page.locator('#gallery article').count(),78);
   await page.fill('#source','café cafe\u0301 👩‍🔬 <img src=x onerror=alert(1)>');
   await page.waitForFunction(()=>document.querySelector('.specimen').textContent.includes('👩‍🔬'));
@@ -22,6 +34,11 @@ const {pathToFileURL}=require('node:url');
   await page.locator('#gallery button').click();assert.match((await page.innerText('#status')).normalize('NFKC'),/selected/);
   await page.fill('#filter','');await page.waitForFunction(()=>document.querySelectorAll('#gallery article').length===78);
   await page.fill('#source','the archive grows its own stars');
+  assert.deepEqual(await page.evaluate(()=>{
+    const w=document.createTreeWalker(document.body,4),leaks=[];
+    while(w.nextNode()){const n=w.currentNode;if(!n.parentElement.closest(GardenPresentation.skipSelector)&&GardenPresentation.prose(n.data)!==n.data)leaks.push(n.data);}
+    return leaks;
+  }),[]);
   fs.mkdirSync(path.join(__dirname,'../test-artifacts'),{recursive:true});
   await page.screenshot({path:path.join(__dirname,'../test-artifacts/desktop.png')});
   await page.setViewportSize({width:390,height:844});

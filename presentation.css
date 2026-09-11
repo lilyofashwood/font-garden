@@ -3,3 +3,22 @@
 .garden-presentation p,.garden-presentation li,.garden-presentation label,.garden-presentation button,.garden-presentation a{overflow-wrap:anywhere}
 .garden-presentation button,.garden-presentation select{line-height:1.5}
 .garden-literal-note{font-size:12px;line-height:1.8;opacity:.8}
+/* The register cabinet: ink, etched brass and a few plum constellations. */
+body.garden-presentation{background-color:#090b10;background-image:radial-gradient(ellipse at 8% 0%,#3d183738,transparent 42%),radial-gradient(ellipse at 100% 35%,#163d3b30,transparent 45%),radial-gradient(circle,#cfae681c .7px,transparent 1px);background-size:auto,auto,43px 47px;color:#f0e8d9}
+.garden-presentation main,.garden-presentation .shell{max-width:1280px}
+.garden-presentation main>h1,.garden-presentation .hero{padding:25px 0 30px;border-bottom:1px solid #bda46a55;position:relative}
+.garden-presentation main>h1::after,.garden-presentation .hero::after{content:'✧ ⸺ ⟢';position:absolute;bottom:-14px;right:18px;background:#0d0d15;color:#d2ae73;font-size:19px;letter-spacing:.4em;padding-left:15px}
+.garden-presentation h1{color:#eed9ac;text-shadow:0 0 35px #dd9aa829}
+.garden-presentation h2,.garden-presentation a{color:#d9bb8b}
+.garden-presentation #gallery article,.garden-presentation .card,.garden-presentation .out-card,.garden-presentation .divider-card{background:linear-gradient(145deg,#17151dee,#0d1115f5);border:1px solid #a18a594d;border-radius:3px 18px 3px 18px;box-shadow:inset 0 1px #f4d4a80b}
+.garden-presentation #gallery article{border-top-color:#b79c686f}
+.garden-presentation .hint,.garden-presentation .sub,.garden-presentation .small{color:#bfb6b0}
+.garden-presentation .tabs-wrap{background:#0c0e14f0;border-color:#bda46a4d}
+.garden-presentation .tab.active{background:#352332;color:#f4d39c;border-color:#c19d69}
+.garden-presentation button{background:#211a24;border-color:#92775380;color:#e9d7b8;border-radius:4px 10px}
+.garden-presentation button:hover{background:#3c2638;border-color:#c4a277}
+.garden-presentation input,.garden-presentation textarea,.garden-presentation select{background:#0b1017;border-color:#85775580;border-radius:4px 10px;color:#eee5d5}
+.garden-presentation :is(button,a,input,textarea,select,summary):focus-visible{outline:2px solid #e8c488;outline-offset:4px}
+.garden-presentation .big-output,.garden-presentation .out-text{border-color:#b69a684d}
+@media(max-width:700px){.garden-presentation main>h1,.garden-presentation .hero{padding-top:12px}.garden-presentation .tabs{gap:5px}.garden-presentation .tab{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.garden-presentation *{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
