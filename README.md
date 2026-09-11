@@ -27,7 +27,7 @@ Fresh browser verification: all 78 cards load; custom Unicode, inert user text, 
 
 ## A lantern in the margin
 
-This new passage carries a small StegWeb Two Plains Easter egg. Decode only its marked Markdown region with the companion [StegWeb workshop](https://github.com/lilyofashwood/steg.web); the surrounding title styles and code are not part of its channel.
+This new passage carries a small StegWeb Two Plains Easter egg. Decode only its marked Markdown region with [Uniception, the renamed StegWeb workshop](https://github.com/lilyofashwood/uniception); the surrounding title styles and code are not part of its channel. The collection itself now lives in [steg.web](https://github.com/lilyofashwood/steg.web).
 
 <!-- stegweb:legacy:two_plains:start -->
 The letter remem𝖻ers a b𝗈dy befo𝗋e its costume. A cat steps th𝗋𝗈ugh the garden carrying a borro𝗐ed alphabet; every flower answers in a different voice, and none pretends to be the missing dictionary.
