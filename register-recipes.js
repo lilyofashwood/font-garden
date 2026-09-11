@@ -44,9 +44,9 @@
     ['blacksite-packet','Blacksite Packet',t=>'⟦'+cycle(['mono','sansBold','boldFraktur','double'])(t).replace(/ /g,'::')+'⟧'],
     ['ghost-carrier','Ghost Carrier',t=>letters(t,(c,s)=>apply(['mono','sansReg','boldFraktur'][(s.position-1)%3],c)+(s.position%2===0?'\u0332':s.position%3===0?'\u035F':'')).replace(/ /g,' ⌁ ')]
   ];
-  for(const [id,name,fn] of recipes) G.register({id,name,family:'synthetic recipe',role:'new executable interpretation; see register spec',mixable:false,baseable:true,fn});
+  for(const [id,name,fn] of recipes) G.register({id,name,family:'synthetic recipe',role:'versioned register recipe; see register rules',mixable:false,baseable:true,fn});
   G.register({id:'coral-asemic-specimen',name:'Coral Asemic — literal specimen',family:'symbol specimen',
-    role:'historical token dictionary missing; preset does not translate your text',mixable:false,baseable:true,
+    role:'fixed recovered specimen',mixable:false,baseable:true,
     fn:()=> '⋆ᨒ𓂅﹆ꔛ﹅⋆𓍼 ꕤ⌕ ⋆⌗⋆ଘ ﹆ꕤǂ⋆ ⌕ꕤଘᯅ𓍼 ᯅꕤ ✧⋈ꕤꕤ𓍼⋆ ⌕ǂꕤ﹆'});
   G.register({id:'kaomoji-heart',name:'Kaomoji Heart',family:'wrapper',role:'recovered wrapper idea',mixable:false,baseable:true,
     fn:t=>'(っ◔◡◔)っ ♥ '+t+' ♥'});
