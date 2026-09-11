@@ -1,0 +1,109 @@
+[
+  {
+    "id": "font-garden",
+    "carrier": "rain lends a body to the hush\nand roots reply in borrowed stars",
+    "selected": "rain",
+    "mode": "chaos_noodle",
+    "ghost": "A second voice is welcome. Bring your reader a lantern.",
+    "hex": "bloom",
+    "a": "rain",
+    "b": "roots"
+  },
+  {
+    "id": "steg-web",
+    "carrier": "we weave a doorway out of weather\nand leave the smallest hinge unlatched",
+    "selected": "weave",
+    "mode": "v1",
+    "ghost": "Fourteen rooms, one unfinished garden. A verse of your own belongs beside it.",
+    "hex": "welcome"
+  },
+  {
+    "id": "ghost-hex",
+    "carrier": "the kettle keeps a little moon\ninside the steam between our words",
+    "register": "ghost-carrier",
+    "ghost": "The kettle is still on. What shape does your steam remember?",
+    "b": "meow"
+  },
+  {
+    "id": "hexmoji",
+    "carrier": "fruit remembers how to spell\nthe sun that taught its skin to glow",
+    "register": "boldScript",
+    "ghost": "A byte puts on a bright new body. The fruit is a second little poem.",
+    "hex": "peel me"
+  },
+  {
+    "id": "kagami-no-migaka",
+    "carrier": "rain returns along the mirror\none paw in the room and one between",
+    "selected": "rain",
+    "mode": "debug_italic",
+    "ghost": "A digital yokai borrows the pause between a question and its echo.",
+    "a": "谷雨",
+    "b": "かがみ"
+  },
+  {
+    "id": "uniception",
+    "carrier": "read the rain between the letters\neach borrowed body holds a door",
+    "selected": "read",
+    "mode": "chaos_noodle",
+    "ghost": "A font can be a voice and a path. Here the chosen letters carry the path.",
+    "hex": "again"
+  },
+  {
+    "id": "zalgo-cipher",
+    "carrier": "above the page the rain takes root\nbelow the name a river answers",
+    "register": "hex-cathedral",
+    "ghost": "Two mark lanes, two small weathers. Either voice can return on its own.",
+    "a": "rain",
+    "b": "river"
+  },
+  {
+    "id": "diacritic-bloom",
+    "carrier": "no letter owns the rain\nno root must wear a single name",
+    "register": "fibonacci-bloom",
+    "ghost": "Free the diacritics. Let another alphabet grow a season of its own.",
+    "a": "petal",
+    "b": "seed"
+  },
+  {
+    "id": "moon-tears",
+    "carrier": "the moon has left a silver bowl\nfor every word too small to hold",
+    "register": "moonvine",
+    "ghost": "The bowl is not empty. It is waiting for a rain you have not named.",
+    "a": "☽"
+  },
+  {
+    "id": "ouroboros-cipher",
+    "carrier": "home is a circle learning rain\nthe last leaf lends the first its name",
+    "selected": "home",
+    "mode": "v1",
+    "ghost": "When the ending meets the beginning, offer the ring a new first line.",
+    "hex": "return"
+  },
+  {
+    "id": "melody-cipher",
+    "carrier": "sing where the quiet keeps its keys\na note can hold a little house",
+    "selected": "sing",
+    "mode": "debug_plain",
+    "ghost": "These letters are a margin poem. The listening room next door carries the song.",
+    "b": "𝄞"
+  },
+  {
+    "id": "twitterpainted",
+    "carrier": "a painted feather crosses rain\nthe bird arrives with all its colours",
+    "register": "wordphase",
+    "ghost": "The picture keeps its thread. The margin keeps a feather for the next storyteller.",
+    "hex": "feather"
+  },
+  {
+    "id": "chatlog-printer",
+    "carrier": "a page remembers where we paused\nand leaves a little room for morning",
+    "register": "loomstep",
+    "ghost": "Keep the conversation in your own little house. This margin belongs to the demo, not your transcript."
+  },
+  {
+    "id": "messageloggerfix",
+    "carrier": "a lamp is lit by invitation\nthe quiet keeps its own front door",
+    "register": "cathedral-core",
+    "ghost": "The switch belongs to the person in the room. The poem is only a visitor."
+  }
+]

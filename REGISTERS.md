@@ -41,3 +41,11 @@ Version 1 defines u→µ, the odd-length split, single-letter precedence, repeat
 Three additions expose the remaining catalog ideas: Kaomoji Heart wraps source in the recovered heart/kaomoji frame; Combining Box adds U+20E3 once to each non-whitespace grapheme; Coral Asemic emits its exact recovered specimen because the token-level dictionary is missing.
 
 Do not use the gallery's broad cleaner on a hidden-message carrier. Normalizing or stripping marks before decoding a payload can destroy the channel. In README compositions, encode only explicitly framed carrier passages; existing house-style prose and links/code remain outside that channel.
+
+## 𝖼𝗁𝐚𝐨𝗌 𝗇𝐨𝐨𝖽𝗅𝐞 𝐚𝗍 𝗍𝗁𝐞 𝗌𝐞𝐚𝗆
+
+𝗍𝗁𝐞 𝗁𝐨𝐮𝗌𝐞 𝗋𝐞𝗀𝐢𝗌𝗍𝐞𝗋 𝐚𝗇𝖽 𝐮𝗇𝐢𝖼𝐞𝗉𝗍𝐢𝐨𝗇 𝗌𝗁𝐚𝗋𝐞 𝐚 𝗉𝗋𝐞𝖼𝐢𝗌𝐞 𝗉𝐚𝐢𝗋 𝐨𝖿 𝗅𝐞𝗍𝗍𝐞𝗋 𝖻𝐨𝖽𝐢𝐞𝗌. 𝐢𝗇 𝗍𝗁𝐞 `chaos_noodle` 𝗆𝐨𝖽𝐞, 𝐚 𝗌𝐞𝗅𝐞𝖼𝗍𝐞𝖽 𝗏𝐨𝗐𝐞𝗅 𝐮𝗌𝐞𝗌 𝗆𝐚𝗍𝗁𝐞𝗆𝐚𝗍𝐢𝖼𝐚𝗅 𝖻𝐨𝗅𝖽 𝐚𝗇𝖽 𝐚 𝗌𝐞𝗅𝐞𝖼𝗍𝐞𝖽 𝖼𝐨𝗇𝗌𝐨𝗇𝐚𝗇𝗍 𝐮𝗌𝐞𝗌 𝗆𝐚𝗍𝗁𝐞𝗆𝐚𝗍𝐢𝖼𝐚𝗅 𝗌𝐚𝗇𝗌-𝗌𝐞𝗋𝐢𝖿 𝗋𝐞𝗀𝐮𝗅𝐚𝗋: 𝐞𝗑𝐚𝖼𝗍𝗅𝗒 𝖼𝗁𝐚𝐨𝗌 𝗇𝐨𝐨𝖽𝗅𝐞 𝐢𝐢. 𝖼𝐨𝗏𝐞𝗋 𝗏𝐨𝗐𝐞𝗅𝗌 𝐮𝗌𝐞 𝗆𝐚𝗍𝗁𝐞𝗆𝐚𝗍𝐢𝖼𝐚𝗅 𝗌𝐚𝗇𝗌-𝗌𝐞𝗋𝐢𝖿 𝖻𝐨𝗅𝖽; 𝖼𝐨𝗏𝐞𝗋 𝖼𝐨𝗇𝗌𝐨𝗇𝐚𝗇𝗍𝗌 𝐮𝗌𝐞 𝐚𝗌𝖼𝐢𝐢. 𝗍𝗁𝐞 𝖿𝐨𝐮𝗋 𝖻𝐨𝖽𝐢𝐞𝗌 𝐚𝗋𝐞 𝗍𝗁𝐞 𝐚𝗅𝗉𝗁𝐚𝖻𝐞𝗍 𝐨𝖿 𝗍𝗁𝐢𝗌 𝗉𝐚𝗋𝗍𝐢𝖼𝐮𝗅𝐚𝗋 𝗆𝐨𝖽𝐞.
+
+𝗍𝗁𝐞 [𝗌𝐞𝐚𝗆 𝗅𝐨𝐨𝗆](seams/index.html) 𝗌𝗍𝐚𝗋𝗍𝗌 𝐚 𝗇𝐞𝗐, 𝖿𝗋𝐚𝗆𝐞𝖽 𝗉𝐚𝗌𝗌𝐚𝗀𝐞 𝖿𝗋𝐨𝗆 𝗉𝗅𝐚𝐢𝗇 𝗌𝐨𝐮𝗋𝖼𝐞. 𝗌𝐞𝗅𝐞𝖼𝗍𝐞𝖽-𝗅𝐞𝗍𝗍𝐞𝗋 𝗆𝐨𝖽𝐞𝗌 𝗄𝐞𝐞𝗉 𝗍𝗁𝐞𝐢𝗋 𝐞𝗑𝐚𝖼𝗍 𝖿𝐨𝗇𝗍 𝗋𝐨𝐮𝗍𝐢𝗇𝗀. 𝗐𝐢𝗍𝗁 𝗍𝗁𝐞 𝗌𝐞𝗅𝐞𝖼𝗍𝐞𝖽 𝗆𝐞𝗌𝗌𝐚𝗀𝐞 𝐞𝗆𝗉𝗍𝗒, 𝐚𝗅𝗅 78 𝗋𝐞𝗀𝐢𝗌𝗍𝐞𝗋 𝖼𝗁𝐨𝐢𝖼𝐞𝗌 𝐚𝗋𝐞 𝐚𝗏𝐚𝐢𝗅𝐚𝖻𝗅𝐞 𝖻𝐞𝗇𝐞𝐚𝗍𝗁 𝗀𝗁𝐨𝗌𝗍 𝗁𝐞𝗑 𝐚𝗇𝖽 𝗍𝗁𝐞 𝐢𝗇𝖽𝐞𝗉𝐞𝗇𝖽𝐞𝗇𝗍 𝗓𝐚𝗅𝗀𝐨 𝗆𝐚𝗋𝗄 𝖼𝗁𝐚𝗇𝗇𝐞𝗅𝗌. 𝗋𝐞𝐚𝖽 𝗆𝐚𝗋𝗄𝗌, 𝗍𝗁𝐞𝗇 𝗌𝐞𝗅𝐞𝖼𝗍𝐨𝗋𝗌, 𝗍𝗁𝐞𝗇 𝗍𝗁𝐞 𝖿𝐨𝗇𝗍 𝗉𝐚𝗍𝗁; 𝗍𝗁𝐞 𝗁𝐞𝗑𝗆𝐨𝗃𝐢 𝗃𝐞𝗐𝐞𝗅 𝗁𝐚𝗌 𝐢𝗍𝗌 𝐨𝗐𝗇 𝗋𝐞𝐚𝖽𝐢𝗇𝗀 𝖻𝐞𝗌𝐢𝖽𝐞 𝗍𝗁𝐞 𝗏𝐞𝗋𝗌𝐞.
+
+𝗍𝗁𝐞 𝗋𝐞𝖼𝐨𝗏𝐞𝗋𝐞𝖽 𝗌𝐞𝗆𝐚𝗇𝗍𝐢𝖼 𝗏𝐞𝐢𝗅-𝗌𝖼𝗋𝐢𝗉𝗍 𝗏𝐨𝖼𝐚𝖻𝐮𝗅𝐚𝗋𝗒 𝗀𝐢𝗏𝐞𝗌 𝗋𝐞𝗀𝐢𝗌𝗍𝐞𝗋𝗌 𝗉𝐨𝐞𝗍𝐢𝖼 𝗋𝐨𝗅𝐞𝗌 𝐚𝗇𝖽 𝗏𝐨𝐢𝖼𝐞𝗌. 𝗀𝐚𝗋𝖽𝐞𝗇 𝗌𝐞𝐚𝗆𝗌 𝐮𝗌𝐞𝗌 𝗍𝗁𝐨𝗌𝐞 𝗋𝐨𝗅𝐞𝗌 𝐚𝗌 𝐚𝗋𝗍𝐢𝗌𝗍𝐢𝖼 𝗅𝐚𝗇𝗀𝐮𝐚𝗀𝐞; 𝗍𝗁𝐢𝗌 𝗉𝐚𝗌𝗌 𝖽𝐨𝐞𝗌 𝗇𝐨𝗍 𝐚𝖽𝖽 𝐚 𝗉𝐞𝗋𝗌𝐨𝗇𝐚 𝐞𝗇𝗀𝐢𝗇𝐞. 𝗍𝗁𝐞 𝗉𝗋𝐢𝗏𝐚𝗍𝐞 𝗌𝐞𝗆𝐚𝗇𝗍𝐢𝖼 𝖽𝗋𝐚𝖿𝗍 𝗌𝗍𝐚𝗒𝗌 𝐢𝗇 𝗍𝗁𝐞 𝗅𝐨𝖼𝐚𝗅 𝐚𝗋𝖼𝗁𝐢𝗏𝐞.

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A local loom for poems with more than one reading. Weave Uniception, Ghost Hex, Hexmoji and independent Zalgo mark channels through the Font Garden.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>the seam loom · font garden</title>
+  <link rel="stylesheet" href="seams.css">
+</head>
+<body>
+  <main>
+    <nav aria-label="Garden navigation"><a href="../">↖ font garden</a><span aria-hidden="true">⸺ ⟢ ⸺</span><a href="https://lilyofashwood.github.io/steg.web/">the whole garden ↗</a></nav>
+    <header class="hero">
+      <p class="eyebrow">𓂀 a small instrument for second readings</p>
+      <h1>the seam loom</h1>
+      <p class="lede">Some letters wear the rain.<br>Some keep a second voice beneath their skin.</p>
+      <div class="hero-glyphs" aria-hidden="true">◌ ⟢ 𓃠 ⟣ ◌</div>
+      <p class="hero-note">Weave a poem. Tuck a lantern into its seams.<br>Leave another reader a way inside.</p>
+    </header>
+
+    <div class="workbench">
+      <section class="panel composer" aria-labelledby="compose-title">
+        <div class="section-head"><span class="sigil" aria-hidden="true">Ⅰ</span><h2 id="compose-title">the visible thread</h2></div>
+        <p class="hint">Your source stays exactly as you type it. The weave appears alongside it.</p>
+        <form id="weave-form" novalidate>
+          <label for="carrier">a carrier poem</label>
+          <textarea id="carrier" rows="5" maxlength="4000" spellcheck="false" data-literal>the hush of rain opens a room for the moon.
+one more voice may leave a little light.</textarea>
+          <div class="field-pair">
+            <div><label for="seam-id">a name for this seam</label><input id="seam-id" value="lantern-between-letters" maxlength="64" spellcheck="false" data-literal aria-describedby="id-hint"><p id="id-hint" class="micro">lowercase letters, digits, joined by hyphens</p></div>
+            <div><label for="register">the letter costume</label><select id="register" aria-describedby="register-hint"></select><p id="register-hint" class="micro">Used when the selected-letter thread is empty.</p></div>
+          </div>
+
+          <div class="thread-heading"><span aria-hidden="true">⟡</span><h3>the secret readings</h3><span class="hairline"></span></div>
+          <p class="hint">Each thread is optional. Add one, or let several bloom together.</p>
+          <div class="field-pair">
+            <div><label for="selected">uniception · selected letters</label><input id="selected" value="home" maxlength="2048" spellcheck="false" data-literal aria-describedby="selected-hint"></div>
+            <div><label for="mode">the paired fonts</label><select id="mode"></select></div>
+          </div>
+          <p id="selected-hint" class="micro">Choose letters already found in the carrier, in order. This thread sets its own font pair.</p>
+          <label for="ghost">ghost hex · an invisible whisper</label>
+          <textarea id="ghost" rows="2" maxlength="2048" spellcheck="false" data-literal aria-describedby="ghost-hint">Another verse is welcome.</textarea>
+          <p id="ghost-hint" class="micro">ASCII travels in supplementary variation selectors.</p>
+          <label for="hex">hexmoji · a separate jewel</label>
+          <input id="hex" value="MEOW" maxlength="2048" spellcheck="false" data-literal aria-describedby="hex-hint">
+          <p id="hex-hint" class="micro">Printable ASCII becomes a visible, direct-hex glyph string.</p>
+          <div class="field-pair">
+            <div><label for="lane-a">diacritic bloom · channel a</label><textarea id="lane-a" rows="2" maxlength="2048" spellcheck="false" data-literal aria-describedby="marks-hint"></textarea></div>
+            <div><label for="lane-b">overlay bloom · channel b</label><textarea id="lane-b" rows="2" maxlength="2048" spellcheck="false" data-literal aria-describedby="marks-hint"></textarea></div>
+          </div>
+          <p id="marks-hint" class="micro">Two independently recoverable mark channels. Short whispers make delicate blooms.</p>
+          <button class="primary" id="weave" type="submit">⟢ weave the seam</button>
+        </form>
+      </section>
+
+      <div class="reading-column">
+        <section class="panel specimen-panel" aria-labelledby="specimen-title">
+          <div class="section-head"><span class="sigil" aria-hidden="true">Ⅱ</span><h2 id="specimen-title">a poem with rooms inside</h2></div>
+          <p class="hint" id="specimen-caption">A first little lantern is waiting below.</p>
+          <div class="specimen-frame"><span class="corner" aria-hidden="true">⟢</span><pre id="verse" data-literal tabindex="0" aria-label="Exact encoded verse"></pre><p id="jewel" data-literal aria-label="Exact Hexmoji jewel"></p><span class="corner closing" aria-hidden="true">⟣</span></div>
+          <div class="actions"><button id="copy-verse" type="button" disabled>copy exact verse</button><button id="copy-packet" type="button" disabled>copy whole packet</button><button id="download" type="button" disabled>save packet ↓</button></div>
+          <p class="micro">The packet keeps the verse, jewel, font choice and integrity seal together. Copy it intact for the complete reading.</p>
+        </section>
+
+        <section class="panel reader" aria-labelledby="reader-title">
+          <div class="section-head"><span class="sigil" aria-hidden="true">Ⅲ</span><h2 id="reader-title">unfold the rooms</h2></div>
+          <p class="peeling">marks ⟶ ghost whisper ⟶ selected letters<br><span>the jewel opens on its own branch</span></p>
+          <details id="packet-details"><summary>open the packet · or paste another</summary><label class="sr-only" for="packet">Complete garden seam packet JSON</label><textarea id="packet" rows="9" maxlength="300000" spellcheck="false" data-literal></textarea></details>
+          <button id="unfold" type="button">𓂀 unfold this packet</button>
+          <div id="recovered" hidden>
+            <p id="recovery-status" class="micro"></p>
+            <dl class="readings">
+              <div><dt>carrier</dt><dd><pre id="out-carrier" data-literal></pre></dd></div>
+              <div><dt>selected letters</dt><dd><pre id="out-selected" data-literal></pre></dd></div>
+              <div><dt>ghost whisper</dt><dd><pre id="out-ghost" data-literal></pre></dd></div>
+              <div><dt>hexmoji jewel</dt><dd><pre id="out-hex" data-literal></pre></dd></div>
+              <div><dt>diacritic channel a</dt><dd><pre id="out-a" data-literal></pre></dd></div>
+              <div><dt>overlay channel b</dt><dd><pre id="out-b" data-literal></pre></dd></div>
+            </dl>
+          </div>
+        </section>
+      </div>
+    </div>
+    <p id="status" role="status" aria-live="polite"></p>
+    <footer><p>⟦ a second voice is welcome · bring your reader a lantern ⟧</p><p class="micro">Made here in your browser. No accounts, keys or saved drafts. Nothing is sent away.</p><p class="micro"><a href="FORMAT.md">the weave, in full</a> · <a href="SOURCES.md">roots & makers</a> · <a href="https://github.com/lilyofashwood/font-garden">the source garden</a></p></footer>
+  </main>
+  <script src="../presentation.js" data-title-voice="bold-script"></script>
+  <script type="module" src="workshop.mjs"></script>
+</body>
+</html>
